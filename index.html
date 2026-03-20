@@ -102,6 +102,42 @@
             top: 20px;
             right: 20px;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+        }
+
+        .mode-switcher {
+            display: flex;
+            gap: 5px;
+        }
+
+        .mode-button {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--light-text-color);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.78em;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .mode-button.active,
+        .mode-button:hover {
+            background-color: #27ae60;
+            border-color: #27ae60;
+        }
+
+        .mode-hidden {
+            display: none !important;
+        }
+
+        .lang-button-row {
+            display: flex;
         }
 
         .lang-button {
@@ -468,6 +504,10 @@
                 padding: 6px 10px;
                 font-size: 0.8em;
             }
+            .mode-button {
+                padding: 4px 8px;
+                font-size: 0.72em;
+            }
 
             /* Popup Guide responsive */
             .modal-box {
@@ -480,8 +520,14 @@
 <body>
     <div class="container">
         <div class="language-switcher">
-            <button id="lang-id" class="lang-button active">ID</button>
-            <button id="lang-en" class="lang-button">EN</button>
+            <div class="mode-switcher">
+                <button id="mode-qa" class="mode-button active" title="Mode QA Engineer">QA</button>
+                <button id="mode-fs" class="mode-button" title="Mode Fullstack Developer">Dev</button>
+            </div>
+            <div class="lang-button-row">
+                <button id="lang-id" class="lang-button active">ID</button>
+                <button id="lang-en" class="lang-button">EN</button>
+            </div>
         </div>
 
         <header>
@@ -506,7 +552,7 @@
                 <section>
                     <h2 data-key="experience_title">PENGALAMAN KERJA</h2>
 
-                    <div class="experience-item">
+                    <div class="experience-item" data-mode-show="QA">
                         <h3 data-key="exp1_position">Quality Control Manual - Freelance</h3>
                         <h4 data-key="exp1_company">Astra Credit Companies (ACC) - Project Anyflow 2</h4>
                         <span class="date-range" data-key="exp1_date">8 Desember - 2 Januari 2026</span>
@@ -517,7 +563,7 @@
                         </ul>
                     </div>
 
-                    <div class="experience-item">
+                    <div class="experience-item" data-mode-show="QA">
                         <h3 data-key="exp2_position">Quality Control Manual - Freelance</h3>
                         <h4 data-key="exp2_company">Astra Credit Companies (ACC) - Project Banana</h4>
                         <span class="date-range" data-key="exp2_date">22 September - 18 November 2025</span>
@@ -528,7 +574,7 @@
                         </ul>
                     </div>
 
-                    <div class="experience-item">
+                    <div class="experience-item" data-mode-show="QA">
                         <h3 data-key="exp3_position">Quality Assurance Engineer</h3>
                         <h4 data-key="exp3_company">PT. Completed Innovation Technology</h4>
                         <span class="date-range" data-key="exp3_date">Februari 2024 - Februari 2025</span>
@@ -539,7 +585,7 @@
                         </ul>
                     </div>
 
-                    <div class="experience-item">
+                    <div class="experience-item" data-mode-show="FullStack">
                         <h3 data-key="exp4_position">Fullstack Developer</h3>
                         <h4 data-key="exp4_company">PT. Markit Digital Indonesia</h4>
                         <span class="date-range" data-key="exp4_date">Desember 2020 - Desember 2023</span>
@@ -553,7 +599,7 @@
                         </ul>
                     </div>
 
-                    <div class="experience-item">
+                    <div class="experience-item" data-mode-show="FullStack">
                         <h3 data-key="exp5_position">Fullstack Developer (Proyek Kontrak)</h3>
                         <h4 data-key="exp5_company">PT. Lichemindo</h4>
                         <p data-key="exp5_desc">Membangun aplikasi pengelolaan dokumen pengujian laboratorium, dari pengajuan hingga publikasi.</p>
@@ -562,7 +608,7 @@
                         </ul>
                     </div>
 
-                    <div class="experience-item">
+                    <div class="experience-item" data-mode-show="FullStack">
                         <h3 data-key="exp6_position">Fullstack Developer (Proyek Kontrak)</h3>
                         <h4 data-key="exp6_company">PT. Agrivest Global Group</h4>
                         <ul>
@@ -574,7 +620,7 @@
 
                 <section>
                     <h2 data-key="portfolio_title">PORTOFOLIO</h2>
-                    <div class="portfolio-group">
+                    <div class="portfolio-group" data-mode-show="QA">
                         <h3 data-key="portfolio_group1_title">Dokumentasi & Otomatisasi QA (Quality Assurance)</h3>
                         <div class="portfolio-item">
                             <h4 data-key="portfolio1_title">Cypress E2E Automation Testing</h4>
@@ -615,6 +661,38 @@
                             <div class="portfolio-links">
                                 <a href="https://drive.google.com/drive/folders/1P0CTdaqzJZU1A3AI0-wtqkZ3PMHKFNbJ?usp=sharing" target="_blank"><i class="fas fa-file-alt icon"></i> <span data-key="docs_link_text">Lihat Dokumentasi</span></a>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-group" data-mode-show="FullStack">
+                        <h3 data-key="portfolio_group2_title">Proyek Pengembangan Fullstack</h3>
+                        <div class="portfolio-item">
+                            <h4 data-key="fs_portfolio_pjt_title">Sistem Informasi Kontrak Lahan SPPLS (Proyek PJT)</h4>
+                            <p class="project-description" data-key="fs_portfolio_pjt_desc">Pengembangan aplikasi web manajemen kontrak sewa pakai lahan untuk PERUM JASA TIRTA II Unit Wilayah IV: manajemen kontrak, data penggarap, alur persetujuan, dashboard monitoring, laporan, dan rekapitulasi. Implementasi mengikuti desain modul dari design-pjt dengan autentikasi dan RBAC.</p>
+                            <ul>
+                                <li data-key="fs_portfolio_pjt_tech">Teknologi: Laravel 10, Sanctum, Casbin (RBAC), MySQL, Vite, ekspor PDF/Excel (DomPDF, Maatwebsite Excel), integrasi penyimpanan S3</li>
+                            </ul>
+                        </div>
+                        <div class="portfolio-item">
+                            <h4 data-key="fs_portfolio1_title">Aplikasi Government Suite – PT. Markit Digital Indonesia</h4>
+                            <p class="project-description" data-key="fs_portfolio1_desc">Membangun dan mengembangkan serangkaian aplikasi web skala besar untuk lembaga pemerintahan: SIKERMA Kemendikbud, SIMBA Ditjenpas, SIMAE Dishub Kota Bogor, Broker Message KKP, dan APKERMA Kemendikbudristek.</p>
+                            <ul>
+                                <li data-key="fs_portfolio1_tech">Teknologi: Laravel, Vue.js, MySQL, REST API, BSRE, Bapenda</li>
+                            </ul>
+                        </div>
+                        <div class="portfolio-item">
+                            <h4 data-key="fs_portfolio2_title">Lab Document Management – PT. Lichemindo</h4>
+                            <p class="project-description" data-key="fs_portfolio2_desc">Aplikasi pengelolaan dokumen pengujian laboratorium end-to-end, mencakup alur pengajuan, proses review, hingga publikasi hasil pengujian.</p>
+                            <ul>
+                                <li data-key="fs_portfolio2_tech">Teknologi: Next.js, GoFiber, PostgreSQL</li>
+                            </ul>
+                        </div>
+                        <div class="portfolio-item">
+                            <h4 data-key="fs_portfolio3_title">CRM Application – PT. Agrivest Global Group</h4>
+                            <p class="project-description" data-key="fs_portfolio3_desc">Membangun aplikasi CRM lengkap untuk memfasilitasi proses penjualan dan pemasaran, termasuk manajemen lead, pipeline penjualan, dan pelaporan.</p>
+                            <ul>
+                                <li data-key="fs_portfolio3_tech">Teknologi: GoFiber, Next.js, Flask, PostgreSQL, Object Storage</li>
+                            </ul>
                         </div>
                     </div>
 
@@ -682,6 +760,30 @@
     </div>
 
     <script>
+        // ─── Mode-specific content overrides ─────────────────────────────────────
+        const modeContent = {
+            QA: {
+                id: {
+                    header_tagline: "Quality Assurance Engineer",
+                    summary_text: "QA Engineer berpengalaman dengan keahlian mendalam dalam perancangan dan pelaksanaan strategi pengujian komprehensif. Mahir dalam functional testing, performance testing, regression testing, dan UAT. Berpengalaman menggunakan Katalon, Selenium, Cypress, K6, Newman/Postman, dan memiliki kompetensi dalam otomatisasi AI Workflow menggunakan n8n. Berkomitmen menghadirkan kualitas perangkat lunak yang stabil dan bebas bug."
+                },
+                en: {
+                    header_tagline: "Quality Assurance Engineer",
+                    summary_text: "Experienced QA Engineer with deep expertise in designing and executing comprehensive testing strategies. Skilled in functional testing, performance testing, regression testing, and UAT. Proficient with Katalon, Selenium, Cypress, K6, Newman/Postman, and competent in AI Workflow automation using n8n. Committed to delivering stable, bug-free software quality."
+                }
+            },
+            FullStack: {
+                id: {
+                    header_tagline: "Fullstack Developer",
+                    summary_text: "Fullstack Developer berpengalaman dengan lebih dari 3 tahun membangun aplikasi web skala besar untuk lembaga pemerintahan dan korporat. Menguasai pengembangan frontend dan backend menggunakan Laravel, Vue.js, Next.js, GoFiber, dan Flask. Berpengalaman dalam integrasi REST API, manajemen database MySQL/PostgreSQL, serta pengembangan aplikasi dari konsep hingga deployment. Berkomitmen menghadirkan solusi perangkat lunak yang berkualitas tinggi dan scalable."
+                },
+                en: {
+                    header_tagline: "Fullstack Developer",
+                    summary_text: "Experienced Fullstack Developer with 3+ years building large-scale web applications for government institutions and corporations. Proficient in frontend and backend development using Laravel, Vue.js, Next.js, GoFiber, and Flask. Skilled in REST API integration, MySQL/PostgreSQL database management, and application development from concept to deployment. Committed to delivering high-quality and scalable software solutions."
+                }
+            }
+        };
+
         // Data terjemahan
         const translations = {
             id: {
@@ -744,6 +846,19 @@
                 report_link_text: "Report",
                 docs_link_text: "Lihat Dokumentasi",
                 portfolio_note: "*Beberapa proyek bersifat internal perusahaan atau memiliki batasan akses. Tautan yang disediakan adalah contoh atau mengarah ke dokumentasi.",
+                portfolio_group2_title: "Proyek Pengembangan Fullstack",
+                fs_portfolio_pjt_title: "Sistem Informasi Kontrak Lahan SPPLS (Proyek PJT)",
+                fs_portfolio_pjt_desc: "Pengembangan aplikasi web manajemen kontrak sewa pakai lahan untuk PERUM JASA TIRTA II Unit Wilayah IV: manajemen kontrak, data penggarap, alur persetujuan, dashboard monitoring, laporan, dan rekapitulasi. Implementasi mengikuti desain modul dari design-pjt dengan autentikasi dan RBAC.",
+                fs_portfolio_pjt_tech: "Teknologi: Laravel 10, Sanctum, Casbin (RBAC), MySQL, Vite, ekspor PDF/Excel (DomPDF, Maatwebsite Excel), integrasi penyimpanan S3",
+                fs_portfolio1_title: "Aplikasi Government Suite – PT. Markit Digital Indonesia",
+                fs_portfolio1_desc: "Membangun dan mengembangkan serangkaian aplikasi web skala besar untuk lembaga pemerintahan: SIKERMA Kemendikbud, SIMBA Ditjenpas, SIMAE Dishub Kota Bogor, Broker Message KKP, dan APKERMA Kemendikbudristek.",
+                fs_portfolio1_tech: "Teknologi: Laravel, Vue.js, MySQL, REST API, BSRE, Bapenda",
+                fs_portfolio2_title: "Lab Document Management – PT. Lichemindo",
+                fs_portfolio2_desc: "Aplikasi pengelolaan dokumen pengujian laboratorium end-to-end, mencakup alur pengajuan, proses review, hingga publikasi hasil pengujian.",
+                fs_portfolio2_tech: "Teknologi: Next.js, GoFiber, PostgreSQL",
+                fs_portfolio3_title: "CRM Application – PT. Agrivest Global Group",
+                fs_portfolio3_desc: "Membangun aplikasi CRM lengkap untuk memfasilitasi proses penjualan dan pemasaran, termasuk manajemen lead, pipeline penjualan, dan pelaporan.",
+                fs_portfolio3_tech: "Teknologi: GoFiber, Next.js, Flask, PostgreSQL, Object Storage",
                 skills_title: "KEAHLIAN",
                 skills_qa_title: "Pengujian & QA:",
                 skills_qa_list: [
@@ -835,6 +950,19 @@
                 report_link_text: "Report",
                 docs_link_text: "View Documentation",
                 portfolio_note: "*Some projects are internal to the company or have access restrictions. Provided links are examples or lead to documentation.",
+                portfolio_group2_title: "Fullstack Development Projects",
+                fs_portfolio_pjt_title: "Land Lease Contract Information System SPPLS (PJT Project)",
+                fs_portfolio_pjt_desc: "Web application development for land lease contract management for PERUM JASA TIRTA II Regional Unit IV: contract management, cultivator (penggarap) data, approval workflows, monitoring dashboards, reports, and aggregated recap. Module design aligned with the design-pjt specs, with authentication and RBAC.",
+                fs_portfolio_pjt_tech: "Technologies: Laravel 10, Sanctum, Casbin (RBAC), MySQL, Vite, PDF/Excel export (DomPDF, Maatwebsite Excel), S3 storage integration",
+                fs_portfolio1_title: "Government Applications Suite – PT. Markit Digital Indonesia",
+                fs_portfolio1_desc: "Built and developed a suite of large-scale web applications for government institutions: SIKERMA Kemendikbud, SIMBA Ditjenpas, SIMAE Dishub Bogor City, KKP Message Broker, and APKERMA Kemendikbudristek.",
+                fs_portfolio1_tech: "Technologies: Laravel, Vue.js, MySQL, REST API, BSRE, Bapenda",
+                fs_portfolio2_title: "Lab Document Management – PT. Lichemindo",
+                fs_portfolio2_desc: "End-to-end laboratory testing document management application, covering submission workflow, review process, and test result publication.",
+                fs_portfolio2_tech: "Technologies: Next.js, GoFiber, PostgreSQL",
+                fs_portfolio3_title: "CRM Application – PT. Agrivest Global Group",
+                fs_portfolio3_desc: "Built a complete CRM application to facilitate sales and marketing processes, including lead management, sales pipeline, and reporting.",
+                fs_portfolio3_tech: "Technologies: GoFiber, Next.js, Flask, PostgreSQL, Object Storage",
                 skills_title: "SKILLS",
                 skills_qa_title: "Testing & QA:",
                 skills_qa_list: [
@@ -869,6 +997,7 @@
         };
 
         let currentLanguage = 'id'; // Akan diatur oleh getInitialLanguage()
+        let currentMode = 'QA';   // 'QA' | 'FullStack'
 
         // Fungsi untuk membuat skill tags secara dinamis
         function createSkillTags(listId, skillsArray) {
@@ -919,6 +1048,9 @@
             createSkillTags('qa-skills-list', translations[currentLanguage].skills_qa_list);
             createSkillTags('dev-skills-list', translations[currentLanguage].skills_dev_list);
             createSkillTags('soft-skills-list', translations[currentLanguage].skills_soft_list);
+
+            // Re-apply mode-specific text overrides after language update
+            applyModeContentOverrides();
         }
 
         function saveOriginalDateRanges() {
@@ -940,6 +1072,62 @@
                 }
             });
         }
+
+        // ─── Mode Functions ───────────────────────────────────────────────────────
+        function getInitialMode() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const modeParam = urlParams.get('mode');
+            if (modeParam === 'FullStack') {
+                return 'FullStack';
+            }
+            return 'QA';
+        }
+
+        function applyModeContentOverrides() {
+            if (modeContent[currentMode] && modeContent[currentMode][currentLanguage]) {
+                const modeData = modeContent[currentMode][currentLanguage];
+                Object.keys(modeData).forEach(key => {
+                    const el = document.querySelector(`[data-key="${key}"]`);
+                    if (el) el.textContent = modeData[key];
+                });
+            }
+        }
+
+        function applyMode(mode) {
+            currentMode = mode;
+
+            // Update mode button active state
+            document.querySelectorAll('.mode-button').forEach(btn => btn.classList.remove('active'));
+            const btnId = mode === 'FullStack' ? 'mode-fs' : 'mode-qa';
+            document.getElementById(btnId).classList.add('active');
+
+            // Show/hide elements based on data-mode-show attribute
+            document.querySelectorAll('[data-mode-show]').forEach(el => {
+                const elMode = el.getAttribute('data-mode-show');
+                if (elMode === mode) {
+                    el.classList.remove('mode-hidden');
+                } else {
+                    el.classList.add('mode-hidden');
+                }
+            });
+
+            // Apply content overrides (tagline, summary)
+            applyModeContentOverrides();
+
+            // Sync URL
+            updateUrlMode(mode);
+        }
+
+        function updateUrlMode(mode) {
+            const url = new URL(window.location.href);
+            if (!mode || mode === 'QA') {
+                url.searchParams.delete('mode');
+            } else {
+                url.searchParams.set('mode', mode);
+            }
+            history.pushState({ lang: currentLanguage, mode }, '', url.toString());
+        }
+        // ─────────────────────────────────────────────────────────────────────────
 
         function getInitialLanguage() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -978,6 +1166,9 @@
             updateContent();
             updateUrlLanguage('en');
         });
+
+        document.getElementById('mode-qa').addEventListener('click', () => applyMode('QA'));
+        document.getElementById('mode-fs').addEventListener('click', () => applyMode('FullStack'));
 
         // --- Logic for Popup Guide ---
         const guideModalOverlay = document.getElementById('languageGuideModalOverlay');
@@ -1035,11 +1226,8 @@
             currentLanguage = getInitialLanguage();
             updateContent();
 
-            const urlParams = new URLSearchParams(window.location.search);
-            const langParam = urlParams.get('lang');
-            if (!langParam || langParam !== currentLanguage) {
-                updateUrlLanguage(currentLanguage);
-            }
+            currentMode = getInitialMode();
+            applyMode(currentMode);
 
             showGuidePopup();
         });
@@ -1053,6 +1241,12 @@
             } else if (!lang && currentLanguage !== 'id') {
                 currentLanguage = 'id';
                 updateContent();
+            }
+
+            const mode = (event.state && event.state.mode) || 'QA';
+            if (mode !== currentMode) {
+                currentMode = mode;
+                applyMode(currentMode);
             }
         });
     </script>
