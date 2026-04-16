@@ -3,176 +3,332 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curriculum Vitae - Rio Ramadhan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Rio Ramadhan - CV</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2c3e50; /* Dark Blue Gray */
-            --secondary-color: #34495e; /* Slightly lighter Dark Blue Gray */
-            --accent-color: #3498db;   /* Bright Blue */
-            --text-color: #444;       /* Darker text for readability */
-            --light-text-color: #ecf0f1; /* Off-white */
-            --bg-color: #f8f9fa;      /* Light background */
-            --card-bg: #ffffff;      /* White card background */
-            --border-radius: 10px;
-            --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.05);
-            --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.1);
+            /* Color System - Navy & Azure */
+            --primary: #0f172a;    /* Slate 900 */
+            --primary-light: #1e293b;
+            --accent: #3b82f6;     /* Blue 500 */
+            --accent-hover: #2563eb;
+            --text-main: #334155;  /* Slate 700 */
+            --text-muted: #64748b; /* Slate 500 */
+            --text-on-dark: #f8fafc;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            
+            /* Spacing & Radius */
+            --radius-lg: 16px;
+            --radius-md: 8px;
+            --radius-full: 9999px;
+            --container-width: 1140px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow-y: scroll; /* Default scrollable */
+            -webkit-font-smoothing: antialiased;
+            padding: 60px 20px;
         }
 
         .container {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 1000px;
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-medium);
+            max-width: var(--container-width);
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
             overflow: hidden;
-            position: relative; /* Added for language switcher positioning */
+            position: relative;
         }
 
-        header {
-            background-color: var(--primary-color);
-            color: var(--light-text-color);
-            padding: 50px 30px;
+        /* --- STICKY CONTROLS --- */
+        .controls-overlay {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .segmented-control {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 4px;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .segment-btn {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 6px 16px;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+            flex: 1;
             text-align: center;
+        }
+
+        .segment-btn.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.4);
+        }
+
+        .segment-btn:hover:not(.active) {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--text-on-dark);
+            padding: 80px 60px;
             position: relative;
         }
 
         header h1 {
-            margin: 0 0 5px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 3.2em;
+            font-size: 3.5rem;
             font-weight: 700;
-            letter-spacing: 1.5px;
+            letter-spacing: -1.5px;
+            margin-bottom: 8px;
+            line-height: 1.1;
         }
 
-        header p.tagline {
-            margin: 0;
-            font-size: 1.3em;
-            font-weight: 300;
-            opacity: 0.9;
+        header .tagline {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #94a3b8;
+            margin-bottom: 32px;
+            max-width: 600px;
         }
 
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin-top: 30px;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px 24px;
         }
 
-        .contact-info span, .contact-info a {
+        .contact-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1em;
-            color: var(--light-text-color);
+            gap: 12px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
             text-decoration: none;
-            transition: color 0.3s ease, transform 0.2s ease;
+            transition: color 0.2s;
         }
 
-        .contact-info a:hover {
-            color: var(--accent-color);
-            transform: translateY(-2px);
+        .contact-item i {
+            width: 16px;
+            color: var(--accent);
         }
 
-        .contact-info .icon {
-            font-size: 1.2em;
+        .contact-item:hover {
+            color: white;
         }
 
-        /* Language Switcher Styles */
-        .language-switcher {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 10;
+        /* --- MAIN LAYOUT --- */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            padding: 60px;
+        }
+
+        section {
+            margin-bottom: 48px;
+        }
+
+        h2.section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 24px;
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 6px;
+            align-items: center;
+            gap: 12px;
         }
 
-        .mode-switcher {
+        h2.section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* --- WORK EXPERIENCE --- */
+        .item-card {
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .item-header {
             display: flex;
-            gap: 5px;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
         }
 
-        .mode-button {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: var(--light-text-color);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.78em;
+        .item-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .item-subtitle {
             font-weight: 600;
-            letter-spacing: 0.3px;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 4px;
         }
 
-        .mode-button.active,
-        .mode-button:hover {
-            background-color: #27ae60;
-            border-color: #27ae60;
-        }
-
-        .mode-hidden {
-            display: none !important;
-        }
-
-        .lang-button-row {
+        .item-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
             display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .lang-button {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: var(--light-text-color);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
-            margin-left: 10px;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+        .item-description {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            color: var(--text-main);
         }
 
-        .lang-button.active,
-        .lang-button:hover {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
+        .item-list {
+            margin: 12px 0 0 18px;
         }
 
-        /* Popup Guide Styles */
+        .item-list li {
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            list-style-type: square;
+        }
+
+        .item-list li::marker {
+            color: var(--accent);
+        }
+
+        /* --- SKILLS & TAGS --- */
+        .skill-group {
+            margin-bottom: 24px;
+        }
+
+        .skill-group h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #f1f5f9;
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .tag:hover {
+            border-color: var(--accent);
+            background: white;
+            transform: translateY(-1px);
+        }
+
+        /* --- PORTFOLIO --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .portfolio-links {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: #eff6ff;
+        }
+
+        /* --- MODAL --- */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(8px);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000; /* Pastikan di atas semua elemen */
+            z-index: 1000;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .modal-overlay.active {
@@ -180,1075 +336,598 @@
             visibility: visible;
         }
 
-        .modal-box {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-medium);
-            max-width: 500px;
+        .modal-card {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            max-width: 440px;
             text-align: center;
-            transform: translateY(-20px); /* Initial position for subtle animation */
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        
-        .modal-overlay.active .modal-box {
-            transform: translateY(0);
-            opacity: 1;
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .modal-box h3 {
-            color: var(--primary-color);
-            font-size: 1.8em;
-            margin-bottom: 15px;
+        .modal-overlay.active .modal-card {
+            transform: scale(1) translateY(0);
         }
 
-        .modal-box p {
-            font-size: 1.1em;
-            margin-bottom: 25px;
-            color: var(--text-color);
-        }
-
-        .modal-box button {
-            background-color: var(--accent-color);
-            color: var(--light-text-color);
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .modal-box button:hover {
-            background-color: #2a7fb8;
-        }
-
-        .main-content {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 30px;
-            gap: 30px;
-        }
-
-        .left-column {
-            flex: 3;
-            min-width: 300px;
-        }
-
-        .right-column {
-            flex: 1.5; /* Adjusted for better balance */
-            min-width: 250px;
-        }
-
-        section {
-            background-color: var(--card-bg);
-            padding: 30px;
-            margin-bottom: 25px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
-            border-left: 5px solid var(--accent-color); /* Added subtle accent */
-        }
-
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--primary-color);
-            font-size: 1.9em;
-            margin-top: 0;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 60px;
-            height: 4px;
-            background-color: var(--accent-color);
-            border-radius: 2px;
-        }
-
-        h3 {
-            color: var(--secondary-color);
-            font-size: 1.4em;
-            margin-top: 0;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        h4 {
-            color: var(--accent-color);
-            font-size: 1.1em;
-            margin-top: 0;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-
-        .date-range {
-            font-size: 0.95em;
-            color: #777;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .experience-item, .project-item, .portfolio-item {
-            margin-bottom: 30px;
-            padding-bottom: 25px;
-            border-bottom: 1px dashed #eee;
-        }
-
-        .experience-item:last-child, .project-item:last-child, .portfolio-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        ul li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 10px;
-            font-size: 0.95em;
-        }
-
-        ul li:before {
-            content: '\f00c'; /* Font Awesome check icon */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            color: var(--accent-color);
-            position: absolute;
-            left: 0;
-            top: 2px;
-            font-size: 0.9em;
-        }
-        
-        .skills-category h3 {
-            font-size: 1.2em;
-            color: var(--primary-color);
+        .modal-card h3 {
+            font-size: 1.5rem;
             margin-bottom: 12px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
+            color: var(--primary);
         }
 
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
+        .modal-card p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
         }
 
-        .skill-tag {
-            background-color: #e9ecef;
-            color: var(--secondary-color);
-            padding: 7px 12px;
-            border-radius: 5px;
-            font-size: 0.9em;
-            white-space: nowrap;
-            transition: background-color 0.3s ease;
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
         }
 
-        .skill-tag:hover {
-            background-color: var(--accent-color);
-            color: var(--light-text-color);
+        .btn-primary:hover {
+            background: var(--primary-light);
         }
 
-        .education-item, .certification-item, .language-item {
-            margin-bottom: 20px;
-        }
-        .education-item:last-child, .certification-item:last-child, .language-item:last-child {
-            margin-bottom: 0;
-        }
+        /* --- UTILS --- */
+        .hidden { display: none !important; }
 
-        .education-item p, .language-item p {
-            margin: 5px 0;
-        }
-        .education-item h3 {
-            margin-bottom: 5px;
-        }
-
-        /* Portfolio specific styles */
-        .portfolio-group {
-            margin-bottom: 30px;
-        }
-        .portfolio-group:last-child {
-            margin-bottom: 0;
-        }
-        .portfolio-group h3 {
-            font-size: 1.5em;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #eee;
-        }
-        .portfolio-item {
-            margin-bottom: 25px; /* Adjust spacing between portfolio items */
-        }
-        .portfolio-item h4 { /* Changed to h4 for sub-project titles */
-            margin-bottom: 5px;
-            font-size: 1.2em;
-            color: var(--secondary-color);
-        }
-        .portfolio-item .project-description {
-            margin-bottom: 10px;
-            font-size: 0.95em;
-        }
-        .portfolio-links a {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--light-text-color);
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 0.9em;
-            margin-right: 10px;
-            margin-top: 10px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        .portfolio-links a:hover {
-            background-color: #2a7fb8; /* Darker accent */
-            transform: translateY(-2px);
-        }
-        .portfolio-links a .icon {
-            margin-right: 5px;
+        /* --- PRINT STYLES --- */
+        @media print {
+            body { padding: 0; background: white; }
+            .container { box-shadow: none; max-width: 100%; border-radius: 0; }
+            .controls-overlay, .modal-overlay { display: none !important; }
+            header { 
+                padding: 40px; 
+                background: white !important; 
+                color: black !important; 
+                border-bottom: 2px solid black; 
+            }
+            header h1 { color: black !important; }
+            header .tagline { color: #333 !important; }
+            .contact-item { color: #333 !important; }
+            .contact-item i { color: black !important; }
+            .main-grid { 
+                padding: 40px; 
+                gap: 30px; 
+                grid-template-columns: 1.5fr 1fr;
+            }
+            h2.section-title { color: black; border-bottom: 1px solid #ddd; }
+            h2.section-title::after { display: none; }
+            .tag { background: white !important; border-color: #ddd !important; }
+            section { break-inside: avoid; }
         }
 
-
-        /* Responsive adjustments */
-        @media (min-width: 768px) {
-            .main-content {
-                flex-direction: row;
-            }
-            .left-column {
-                flex: 3;
-            }
-            .right-column {
-                flex: 1.5;
-            }
-        }
-
-        @media (max-width: 767px) {
-            body {
-                padding: 10px;
-            }
-            .container {
-                border-radius: 0;
-                box-shadow: none;
-            }
-
-            header {
-                padding: 40px 20px;
-            }
-
-            header h1 {
-                font-size: 2.5em;
-            }
-
-            header p.tagline {
-                font-size: 1.1em;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-                margin-top: 20px;
-            }
-
-            .main-content {
-                flex-direction: column;
-                padding: 20px;
-                gap: 20px;
-            }
-
-            section {
-                padding: 20px;
-                margin-bottom: 20px;
-                border-left: none; /* Remove border-left on small screens */
-                border-top: 5px solid var(--accent-color); /* Add top border for consistency */
-            }
-
-            h2 {
-                font-size: 1.7em;
-                margin-bottom: 20px;
-            }
-            h2::after {
-                width: 40px;
-                height: 3px;
-            }
-
-            h3 {
-                font-size: 1.2em;
-            }
-
-            h4 {
-                font-size: 1em;
-            }
-
-            ul li {
-                padding-left: 25px;
-                margin-bottom: 8px;
-            }
-            /* Language switcher responsive */
-            .language-switcher {
-                top: 10px;
-                right: 10px;
-            }
-            .lang-button {
-                padding: 6px 10px;
-                font-size: 0.8em;
-            }
-            .mode-button {
-                padding: 4px 8px;
-                font-size: 0.72em;
-            }
-
-            /* Popup Guide responsive */
-            .modal-box {
-                margin: 20px; /* Add some margin on small screens */
-                padding: 20px;
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .main-grid { grid-template-columns: 1fr; gap: 40px; padding: 40px; }
+            header { padding: 60px 40px; }
+            header h1 { font-size: 2.5rem; }
+            .controls-overlay { 
+                position: relative; 
+                top: 0; right: 0; 
+                padding: 20px 40px; 
+                background: var(--primary); 
+                flex-direction: row; 
+                justify-content: space-between;
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="language-switcher">
-            <div class="mode-switcher">
-                <button id="mode-qa" class="mode-button active" title="Mode QA Engineer">QA</button>
-                <button id="mode-fs" class="mode-button" title="Mode Fullstack Developer">Dev</button>
-            </div>
-            <div class="lang-button-row">
-                <button id="lang-id" class="lang-button active">ID</button>
-                <button id="lang-en" class="lang-button">EN</button>
-            </div>
+
+<div class="container">
+    <!-- Controls -->
+    <div class="controls-overlay">
+        <div class="segmented-control">
+            <button id="mode-qa" class="segment-btn active">QA Engineer</button>
+            <button id="mode-fs" class="segment-btn">Fullstack Dev</button>
         </div>
+        <div class="segmented-control">
+            <button id="lang-id" class="segment-btn active">ID</button>
+            <button id="lang-en" class="segment-btn">EN</button>
+        </div>
+    </div>
 
-        <header>
-            <h1 data-key="header_name">Rio Ramadhan</h1>
-            <p class="tagline" data-key="header_tagline">Fullstack Developer & Quality Assurance Engineer</p>
-            <div class="contact-info">
-                <span data-key="contact_dob"><i class="fas fa-calendar-alt icon"></i> Bogor, 23 Januari 1998</span>
-                <span><i class="fas fa-phone icon"></i> <a href="tel:+6282211965523">+6282211965523</a></span>
-                <span><i class="fas fa-envelope icon"></i> <a href="mailto:rioramadhan423@gmail.com">rioramadhan423@gmail.com</a></span>
-                <span><i class="fab fa-linkedin icon"></i> <a href="https://linkedin.com/in/rio-ramadhan-233a65169" target="_blank">linkedin.com/in/rio-ramadhan-233a65169</a></span>
-                <span><i class="fab fa-github icon"></i> <a href="https://towel423.github.io/my-porto-apps.github.io/?lang=id" target="_blank">https://towel423.github.io/my-porto-apps.github.io/?lang=id</a></span>
+    <!-- Header -->
+    <header>
+        <h1 data-key="header_name">Rio Ramadhan</h1>
+        <p class="tagline" data-key="header_tagline">Fullstack Developer & Quality Assurance Engineer</p>
+        
+        <div class="contact-grid">
+            <div class="contact-item" id="contact-dob-wrapper">
+                <i class="fas fa-calendar-alt"></i>
+                <span data-key="contact_dob">Bogor, 23 Januari 1998</span>
             </div>
-        </header>
+            <a href="tel:+6282211965523" class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+6282211965523</span>
+            </a>
+            <a href="mailto:rioramadhan423@gmail.com" class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>rioramadhan423@gmail.com</span>
+            </a>
+            <a href="https://linkedin.com/in/rio-ramadhan-233a65169" target="_blank" class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <span>linkedin.com/in/rio-ramadhan</span>
+            </a>
+            <a href="https://towel423.github.io/my-porto-apps.github.io" target="_blank" class="contact-item">
+                <i class="fas fa-globe"></i>
+                <span data-key="portfolio_link_text">Portfolio</span>
+            </a>
+        </div>
+    </header>
 
-        <div class="main-content">
-            <div class="left-column">
-                <section>
-                    <h2 data-key="summary_title">RINGKASAN PROFESIONAL</h2>
-                    <p data-key="summary_text">Profesional berpengalaman dengan latar belakang kuat sebagai Fullstack Developer dan Quality Assurance Engineer, berfokus pada peningkatan kualitas perangkat lunak dan efisiensi operasional. Memiliki keahlian dalam siklus pengembangan perangkat lunak (SDLC), perancangan dan pelaksanaan pengujian fungsional, pengujian performa, serta analisis bug. Mahir dalam penggunaan berbagai tools QA seperti Katalon, Selenium, K6, dan memiliki kompetensi dalam otomatisasi AI Workflow menggunakan n8n. Berkomitmen untuk memberikan solusi perangkat lunak yang stabil dan berkualitas tinggi.</p>
-                </section>
+    <div class="main-grid">
+        <!-- Left Column -->
+        <main class="left-col">
+            <section>
+                <h2 class="section-title" data-key="summary_title">RINGKASAN PROFESIONAL</h2>
+                <p data-key="summary_text" class="item-description"></p>
+            </section>
 
-                <section>
-                    <h2 data-key="experience_title">PENGALAMAN KERJA</h2>
+            <section>
+                <h2 class="section-title" data-key="experience_title">PENGALAMAN KERJA</h2>
+                <div id="experience-list"></div>
+            </section>
 
-                    <div class="experience-item" data-mode-show="QA">
-                        <h3 data-key="exp1_position">Quality Control Manual - Freelance</h3>
-                        <h4 data-key="exp1_company">Astra Credit Companies (ACC) - Project Anyflow 2</h4>
-                        <span class="date-range" data-key="exp1_date">8 Desember - 2 Januari 2026</span>
-                        <ul>
-                            <li data-key="exp1_task1">Bertanggung jawab atas pengujian fungsional dan regression testing pada aplikasi Project Anyflow.</li>
-                            <li data-key="exp1_task2">Membuat dan mengeksekusi test case, melaporkan bug, serta memverifikasi perbaikan bersama tim developer.</li>
-                            <li data-key="exp1_task3">Menggunakan tools: Monday serta melakukan eksploratory testing untuk memastikan kualitas sebelum release.</li>
-                        </ul>
-                    </div>
+            <section>
+                <h2 class="section-title" data-key="portfolio_title">PORTOFOLIO TERPILIH</h2>
+                <div id="portfolio-list" class="portfolio-grid"></div>
+            </section>
+        </main>
 
-                    <div class="experience-item" data-mode-show="QA">
-                        <h3 data-key="exp2_position">Quality Control Manual - Freelance</h3>
-                        <h4 data-key="exp2_company">Astra Credit Companies (ACC) - Project Banana</h4>
-                        <span class="date-range" data-key="exp2_date">22 September - 18 November 2025</span>
-                        <ul>
-                            <li data-key="exp2_task1">Bertanggung jawab atas pengujian fungsional dan regression testing pada aplikasi internal Project Banana.</li>
-                            <li data-key="exp2_task2">Membuat dan mengeksekusi test case, melaporkan bug, serta memverifikasi perbaikan bersama tim developer.</li>
-                            <li data-key="exp2_task3">Menggunakan tools: Monday serta melakukan eksploratory testing untuk memastikan kualitas sebelum release.</li>
-                        </ul>
-                    </div>
+        <!-- Right Column -->
+        <aside class="right-col">
+            <section>
+                <h2 class="section-title" data-key="skills_title">KEAHLIAN</h2>
+                <div id="skills-sections"></div>
+            </section>
 
-                    <div class="experience-item" data-mode-show="QA">
-                        <h3 data-key="exp3_position">Quality Assurance Engineer</h3>
-                        <h4 data-key="exp3_company">PT. Completed Innovation Technology</h4>
-                        <span class="date-range" data-key="exp3_date">Februari 2024 - Februari 2025</span>
-                        <ul>
-                            <li data-key="exp3_task1">Merancang dan melaksanakan strategi pengujian komprehensif, mencakup functional test dan performance test untuk memastikan kualitas aplikasi.</li>
-                            <li data-key="exp3_task2">Berkolaborasi aktif dengan tim developer untuk perbaikan logika dan memberikan rekomendasi perbaikan kode yang efektif.</li>
-                            <li data-key="exp3_task3">Menggunakan tools utama: Katalon, K6, Selenium, case.io, ClickUp, dan memiliki pemahaman tentang Nest.js.</li>
-                        </ul>
-                    </div>
-
-                    <div class="experience-item" data-mode-show="FullStack">
-                        <h3 data-key="exp4_position">Fullstack Developer</h3>
-                        <h4 data-key="exp4_company">PT. Markit Digital Indonesia</h4>
-                        <span class="date-range" data-key="exp4_date">Desember 2020 - Desember 2023</span>
-                        <p data-key="exp4_desc">Berperan dalam pengembangan berbagai aplikasi berskala besar untuk lembaga pemerintahan, termasuk:</p>
-                        <ul>
-                            <li data-key="exp4_task1"><strong>Sistem Kerjasama (SIKERMA) Kemendikbud:</strong> Pengelolaan data kerjasama SMK dan Industri (Laravel, MySQL).</li>
-                            <li data-key="exp4_task2"><strong>Sistem Manajemen Bangunan (SIMBA) Ditjenpas:</strong> Pengelolaan aset bangunan (Vue.js, Laravel, MySQL).</li>
-                            <li data-key="exp4_task3"><strong>Sistem Manajemen Angkutan Elektronik (SIMAE) Dishub Kota Bogor:</strong> Integrasi dengan BSRE dan Bapenda (Vue.js, Laravel, REST API IDP, MySQL).</li>
-                            <li data-key="exp4_task4"><strong>Broker Message Satellite Based KKP:</strong> Pengelolaan pesan satelit dari kapal (Vue.js, Laravel, REST API IDP, MySQL).</li>
-                            <li data-key="exp4_task5"><strong>Aplikasi Kerjasama (APKERMA) Kemendikbudristek:</strong> Pengelolaan kerjasama pendidikan, kebudayaan, riset (Vue.js, Laravel, MySQL).</li>
-                        </ul>
-                    </div>
-
-                    <div class="experience-item" data-mode-show="FullStack">
-                        <h3 data-key="exp5_position">Fullstack Developer (Proyek Kontrak)</h3>
-                        <h4 data-key="exp5_company">PT. Lichemindo</h4>
-                        <p data-key="exp5_desc">Membangun aplikasi pengelolaan dokumen pengujian laboratorium, dari pengajuan hingga publikasi.</p>
-                        <ul>
-                            <li data-key="exp5_task1">Menggunakan Next.js, GoFiber, PostgreSQL.</li>
-                        </ul>
-                    </div>
-
-                    <div class="experience-item" data-mode-show="FullStack">
-                        <h3 data-key="exp6_position">Fullstack Developer (Proyek Kontrak)</h3>
-                        <h4 data-key="exp6_company">PT. Agrivest Global Group</h4>
-                        <ul>
-                            <li data-key="exp6_task1">Mengembangkan aplikasi CRM untuk memfasilitasi proses penjualan dan pemasaran.</li>
-                            <li data-key="exp6_task2">Menggunakan GoFiber, Object Storage, Next.js, Flask, PostgreSQL.</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section>
-                    <h2 data-key="portfolio_title">PORTOFOLIO</h2>
-                    <div class="portfolio-group" data-mode-show="QA">
-                        <h3 data-key="portfolio_group1_title">Dokumentasi & Otomatisasi QA (Quality Assurance)</h3>
-                        <div class="portfolio-item">
-                            <h4 data-key="portfolio1_title">Cypress E2E Automation Testing</h4>
-                            <p class="project-description" data-key="portfolio1_desc">Implementasi otomatisasi pengujian End-to-End (E2E) menggunakan Cypress, mencakup perancangan test case, penulisan skrip, dan pengelolaan data uji dengan Faker. Memastikan fungsionalitas aplikasi web secara menyeluruh.</p>
-                            <ul>
-                                <li data-key="portfolio1_tech">Teknologi: Cypress, JavaScript, Faker, Page Object Model</li>
-                            </ul>
-                            <div class="portfolio-links">
-                                <a href="https://gitlab.com/towel423/cypress-starterpack.git" target="_blank"><i class="fab fa-gitlab icon"></i> <span data-key="repo_link_text">Repositori GitLab</span></a>
-                                <a href="https://drive.google.com/file/d/1fQ3W8le0qZR0Q_kJi9Z2zlzi2UIAOmP9/view?usp=sharing" target="_blank"><i class="fas fa-video icon"></i> <span data-key="video_link_text">Sample Video Test</span></a>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <h4 data-key="portfolio2_title">API Testing Automation (Newman/Postman)</h4>
-                            <p class="project-description" data-key="portfolio2_desc">Implementasi dan pengelolaan skrip otomatisasi pengujian API menggunakan Newman dan Postman Collection, memastikan fungsionalitas dan kinerja API secara berkelanjutan.</p>
-                            <ul>
-                                <li data-key="portfolio2_tech">Teknologi: Newman, Postman, JavaScript</li>
-                            </ul>
-                            <div class="portfolio-links">
-                                <a href="https://gitlab.com/towel423/newman.git" target="_blank"><i class="fab fa-gitlab icon"></i> <span data-key="repo_link_text">Repositori GitLab</span></a>
-                                 <a href="https://towel423.github.io/newman-report.github.io/" target="_blank"><i class="fas fa-chart-bar icon"></i> <span data-key="report_link_text">Newman Report</span></a>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <h4 data-key="portfolio3_title">Performance Testing (k6)</h4>
-                            <p class="project-description" data-key="portfolio3_desc">Pengujian performa API menggunakan k6, mencakup penyiapan skenario beban, implementasi logika tes yang kompleks (misalnya, chain requests, token management), dan generasi laporan kinerja interaktif.</p>
-                            <ul>
-                                <li data-key="portfolio3_tech">Teknologi: k6, JavaScript, Node.js, k6-html-reporter</li>
-                            </ul>
-                            <div class="portfolio-links">
-                                <a href="https://gitlab.com/towel423/k6-performance-test" target="_blank"><i class="fab fa-gitlab icon"></i> <span data-key="repo_link_text">Repositori GitLab</span></a>
-                                 <a href="https://towel423.github.io/k6-porto.github.io/" target="_blank"><i class="fas fa-chart-bar icon"></i> <span data-key="report_link_text">K6 Report</span></a>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <h4 data-key="portfolio4_title">QA Manual Docs</h4>
-                            <p class="project-description" data-key="portfolio4_desc">Sample pengujian manual, termasuk test plan, test case, dan laporan bug, yang digunakan untuk memastikan kualitas dan fungsionalitas aplikasi. Menunjukkan kemampuan dalam merancang dan melaksanakan strategi pengujian komprehensif.</p>
-                            <div class="portfolio-links">
-                                <a href="https://drive.google.com/drive/folders/1P0CTdaqzJZU1A3AI0-wtqkZ3PMHKFNbJ?usp=sharing" target="_blank"><i class="fas fa-file-alt icon"></i> <span data-key="docs_link_text">Lihat Dokumentasi</span></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="portfolio-group" data-mode-show="FullStack">
-                        <h3 data-key="portfolio_group2_title">Proyek Pengembangan Fullstack</h3>
-                        <div class="portfolio-item">
-                            <h4 data-key="fs_portfolio_pjt_title">Sistem Informasi Kontrak Lahan SPPLS (Proyek PJT)</h4>
-                            <p class="project-description" data-key="fs_portfolio_pjt_desc">Pengembangan aplikasi web manajemen kontrak sewa pakai lahan untuk PERUM JASA TIRTA II Unit Wilayah IV: manajemen kontrak, data penggarap, alur persetujuan, dashboard monitoring, laporan, dan rekapitulasi. Implementasi mengikuti desain modul dari design-pjt dengan autentikasi dan RBAC.</p>
-                            <ul>
-                                <li data-key="fs_portfolio_pjt_tech">Teknologi: Laravel 10, Sanctum, Casbin (RBAC), MySQL, Vite, ekspor PDF/Excel (DomPDF, Maatwebsite Excel), integrasi penyimpanan S3</li>
-                            </ul>
-                        </div>
-                        <div class="portfolio-item">
-                            <h4 data-key="fs_portfolio1_title">Aplikasi Government Suite – PT. Markit Digital Indonesia</h4>
-                            <p class="project-description" data-key="fs_portfolio1_desc">Membangun dan mengembangkan serangkaian aplikasi web skala besar untuk lembaga pemerintahan: SIKERMA Kemendikbud, SIMBA Ditjenpas, SIMAE Dishub Kota Bogor, Broker Message KKP, dan APKERMA Kemendikbudristek.</p>
-                            <ul>
-                                <li data-key="fs_portfolio1_tech">Teknologi: Laravel, Vue.js, MySQL, REST API, BSRE, Bapenda</li>
-                            </ul>
-                        </div>
-                        <div class="portfolio-item">
-                            <h4 data-key="fs_portfolio2_title">Lab Document Management – PT. Lichemindo</h4>
-                            <p class="project-description" data-key="fs_portfolio2_desc">Aplikasi pengelolaan dokumen pengujian laboratorium end-to-end, mencakup alur pengajuan, proses review, hingga publikasi hasil pengujian.</p>
-                            <ul>
-                                <li data-key="fs_portfolio2_tech">Teknologi: Next.js, GoFiber, PostgreSQL</li>
-                            </ul>
-                        </div>
-                        <div class="portfolio-item">
-                            <h4 data-key="fs_portfolio3_title">CRM Application – PT. Agrivest Global Group</h4>
-                            <p class="project-description" data-key="fs_portfolio3_desc">Membangun aplikasi CRM lengkap untuk memfasilitasi proses penjualan dan pemasaran, termasuk manajemen lead, pipeline penjualan, dan pelaporan.</p>
-                            <ul>
-                                <li data-key="fs_portfolio3_tech">Teknologi: GoFiber, Next.js, Flask, PostgreSQL, Object Storage</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <p style="font-size: 0.9em; margin-top: 20px; color: #777;" data-key="portfolio_note">*Beberapa proyek bersifat internal perusahaan atau memiliki batasan akses. Tautan yang disediakan adalah contoh atau mengarah ke dokumentasi.</p>
-                </section>
+            <section>
+                <h2 class="section-title" data-key="education_title">PENDIDIKAN</h2>
+                <div class="item-card">
+                    <h3 class="item-subtitle" data-key="edu1_degree">Sarjana Terapan (D4) Teknik Informatika</h3>
+                    <p class="item-title" data-key="edu1_uni">Politeknik Negeri Jakarta</p>
+                    <p class="item-meta" data-key="edu1_program">CCIT - FTUI (Network Administrator)</p>
                 </div>
+            </section>
 
-            <div class="right-column">
-                <section>
-                    <h2 data-key="skills_title">KEAHLIAN</h2>
-                    <div class="skills-category">
-                        <h3 data-key="skills_qa_title">Pengujian & QA:</h3>
-                        <div class="skills-list" id="qa-skills-list">
-                            </div>
-                    </div>
-                    <div class="skills-category">
-                        <h3 data-key="skills_dev_title">Pengembangan & Teknologi:</h3>
-                        <div class="skills-list" id="dev-skills-list">
-                            </div>
-                    </div>
-                    <div class="skills-category">
-                        <h3 data-key="skills_soft_title">Soft Skills:</h3>
-                        <div class="skills-list" id="soft-skills-list">
-                            </div>
-                    </div>
-                </section>
+            <section>
+                <h2 class="section-title" data-key="certifications_title">SERTIFIKASI</h2>
+                <ul class="item-list">
+                    <li data-key="cert1_name">IBM Data Analyst Professional</li>
+                </ul>
+            </section>
 
-                <section>
-                    <h2 data-key="education_title">PENDIDIKAN</h2>
-                    <div class="education-item">
-                        <h3 data-key="edu1_degree">Sarjana Terapan (D4) Teknik Informatika</h3>
-                        <p data-key="edu1_uni">Politeknik Negeri Jakarta</p>
-                        <p data-key="edu1_program">CCIT - FTUI Network Administrator Professional (NAP)</p>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>SERTIFIKASI</h2>
-                    <div class="certification-item">
-                        <ul>
-                            <li data-key="cert1_name">IBM Data Analyst</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>BAHASA</h2>
-                    <div class="language-item">
-                        <ul>
-                            <li data-key="lang1_id">Bahasa Indonesia: Native</li>
-                            <li data-key="lang2_en">Bahasa Inggris: Beginner</li>
-                        </ul>
-                    </div>
-                </section>
-            </div>
-        </div>
+            <section>
+                <h2 class="section-title" data-key="languages_title">BAHASA</h2>
+                <ul class="item-list">
+                    <li data-key="lang1_id">Bahasa Indonesia (Native)</li>
+                    <li data-key="lang2_en">English (Professional)</li>
+                </ul>
+            </section>
+        </aside>
     </div>
+</div>
 
-    <div id="languageGuideModalOverlay1" class="modal-overlay">
-        <div class="modal-box">
-            <h3 data-key="popup_title">Welcome!</h3>
-            <p data-key="popup_description">This CV has a language switch feature. Click the 'EN' button in the top right corner to switch to English, or 'ID' to return to Indonesian.</p>
-            <button id="closeGuideButton" data-key="popup_button">Got it!</button>
-        </div>
+<!-- Modal -->
+<div id="welcomeModal" class="modal-overlay">
+    <div class="modal-card">
+        <h3 data-key="popup_title">Selamat Datang!</h3>
+        <p data-key="popup_description">Pilih mode tampilan dan bahasa menggunakan panel di bagian kanan atas.</p>
+        <button id="closeModal" class="btn-primary" data-key="popup_button">Mulai</button>
     </div>
+</div>
 
-    <script>
-        // ─── Mode-specific content overrides ─────────────────────────────────────
-        const modeContent = {
-            QA: {
-                id: {
-                    header_tagline: "Quality Assurance Engineer",
-                    summary_text: "QA Engineer berpengalaman dengan keahlian mendalam dalam perancangan dan pelaksanaan strategi pengujian komprehensif. Mahir dalam functional testing, performance testing, regression testing, dan UAT. Berpengalaman menggunakan Katalon, Selenium, Cypress, K6, Newman/Postman, dan memiliki kompetensi dalam otomatisasi AI Workflow menggunakan n8n. Berkomitmen menghadirkan kualitas perangkat lunak yang stabil dan bebas bug."
-                },
-                en: {
-                    header_tagline: "Quality Assurance Engineer",
-                    summary_text: "Experienced QA Engineer with deep expertise in designing and executing comprehensive testing strategies. Skilled in functional testing, performance testing, regression testing, and UAT. Proficient with Katalon, Selenium, Cypress, K6, Newman/Postman, and competent in AI Workflow automation using n8n. Committed to delivering stable, bug-free software quality."
-                }
-            },
-            FullStack: {
-                id: {
-                    header_tagline: "Fullstack Developer",
-                    summary_text: "Fullstack Developer berpengalaman dengan lebih dari 3 tahun membangun aplikasi web skala besar untuk lembaga pemerintahan dan korporat. Menguasai pengembangan frontend dan backend menggunakan Laravel, Vue.js, Next.js, GoFiber, dan Flask. Berpengalaman dalam integrasi REST API, manajemen database MySQL/PostgreSQL, serta pengembangan aplikasi dari konsep hingga deployment. Berkomitmen menghadirkan solusi perangkat lunak yang berkualitas tinggi dan scalable."
-                },
-                en: {
-                    header_tagline: "Fullstack Developer",
-                    summary_text: "Experienced Fullstack Developer with 3+ years building large-scale web applications for government institutions and corporations. Proficient in frontend and backend development using Laravel, Vue.js, Next.js, GoFiber, and Flask. Skilled in REST API integration, MySQL/PostgreSQL database management, and application development from concept to deployment. Committed to delivering high-quality and scalable software solutions."
-                }
-            }
-        };
-
-        // Data terjemahan
-        const translations = {
+<script>
+/**
+ * DATA DEFINITION
+ * Keeping data structured for scalability and consistency
+ */
+const contentData = {
+    modes: {
+        QA: {
             id: {
-                header_name: "Rio Ramadhan",
-                header_tagline: "Fullstack Developer & Quality Assurance Engineer",
-                contact_dob: '<i class="fas fa-calendar-alt icon"></i> Bogor, 23 Januari 1998',
-                summary_title: "RINGKASAN PROFESIONAL",
-                summary_text: "Profesional berpengalaman dengan latar belakang kuat sebagai Fullstack Developer dan Quality Assurance Engineer, berfokus pada peningkatan kualitas perangkat lunak dan efisiensi operasional. Memiliki keahlian dalam siklus pengembangan perangkat lunak (SDLC), perancangan dan pelaksanaan pengujian fungsional, pengujian performa, serta analisis bug. Mahir dalam penggunaan berbagai tools QA seperti Katalon, Selenium, K6, dan memiliki kompetensi dalam otomatisasi AI Workflow menggunakan n8n. Berkomitmen untuk memberikan solusi perangkat lunak yang stabil dan berkualitas tinggi.",
-                experience_title: "PENGALAMAN KERJA",
-                exp1_position: "Quality Control Manual - Freelance",
-                exp1_company: "Astra Credit Companies (ACC) - Project Anyflow 2",
-                exp1_date: "8 Desember - 2 Januari 2026",
-                exp1_task1: "Bertanggung jawab atas pengujian fungsional dan regression testing pada aplikasi Project Anyflow.",
-                exp1_task2: "Membuat dan mengeksekusi test case, melaporkan bug, serta memverifikasi perbaikan bersama tim developer.",
-                exp1_task3: "Menggunakan tools: Monday serta melakukan eksploratory testing untuk memastikan kualitas sebelum release.",
-                exp2_position: "Quality Control Manual - Freelance",
-                exp2_company: "Astra Credit Companies (ACC) - Project Banana",
-                exp2_date: "22 September - 18 November 2025",
-                exp2_task1: "Bertanggung jawab atas pengujian fungsional dan regression testing pada aplikasi internal Project Banana.",
-                exp2_task2: "Membuat dan mengeksekusi test case, melaporkan bug, serta memverifikasi perbaikan bersama tim developer.",
-                exp2_task3: "Menggunakan tools: Monday serta melakukan eksploratory testing untuk memastikan kualitas sebelum release.",
-                exp3_position: "Quality Assurance Engineer",
-                exp3_company: "PT. Completed Innovation Technology",
-                exp3_date: "Februari 2024 - Februari 2025",
-                exp3_task1: "Merancang dan melaksanakan strategi pengujian komprehensif, mencakup functional test dan performance test untuk memastikan kualitas aplikasi.",
-                exp3_task2: "Berkolaborasi aktif dengan tim developer untuk perbaikan logika dan memberikan rekomendasi perbaikan kode yang efektif.",
-                exp3_task3: "Menggunakan tools utama: Katalon, K6, Selenium, case.io, ClickUp, dan memiliki pemahaman tentang Nest.js.",
-                exp4_position: "Fullstack Developer",
-                exp4_company: "PT. Markit Digital Indonesia",
-                exp4_date: "Desember 2020 - Desember 2023",
-                exp4_desc: "Berperan dalam pengembangan berbagai aplikasi berskala besar untuk lembaga pemerintahan, termasuk:",
-                exp4_task1: "<strong>Sistem Kerjasama (SIKERMA) Kemendikbud:</strong> Pengelolaan data kerjasama SMK dan Industri (Laravel, MySQL).",
-                exp4_task2: "<strong>Sistem Manajemen Bangunan (SIMBA) Ditjenpas:</strong> Pengelolaan aset bangunan (Vue.js, Laravel, MySQL).",
-                exp4_task3: "<strong>Sistem Manajemen Angkutan Elektronik (SIMAE) Dishub Kota Bogor:</strong> Integrasi dengan BSRE dan Bapenda (Vue.js, Laravel, REST API IDP, MySQL).",
-                exp4_task4: "<strong>Broker Message Satellite Based KKP:</strong> Pengelolaan pesan satelit dari kapal (Vue.js, Laravel, REST API IDP, MySQL).",
-                exp4_task5: "<strong>Aplikasi Kerjasama (APKERMA) Kemendikbudristek:</strong> Pengelolaan kerjasama pendidikan, kebudayaan, riset (Vue.js, Laravel, MySQL).",
-                exp5_position: "Fullstack Developer (Proyek Kontrak)",
-                exp5_company: "PT. Lichemindo",
-                exp5_desc: "Membangun aplikasi pengelolaan dokumen pengujian laboratorium, dari pengajuan hingga publikasi.",
-                exp5_task1: "Menggunakan Next.js, GoFiber, PostgreSQL.",
-                exp6_position: "Fullstack Developer (Proyek Kontrak)",
-                exp6_company: "PT. Agrivest Global Group",
-                exp6_task1: "Mengembangkan aplikasi CRM untuk memfasilitasi proses penjualan dan pemasaran.",
-                exp6_task2: "Menggunakan GoFiber, Object Storage, Next.js, Flask, PostgreSQL.",
-                portfolio_title: "PORTOFOLIO",
-                portfolio_group1_title: "Dokumentasi & Otomatisasi QA (Quality Assurance)",
-                portfolio1_title: "Cypress E2E Automation Testing",
-                portfolio1_desc: "Implementasi otomatisasi pengujian End-to-End (E2E) menggunakan Cypress, mencakup perancangan test case, penulisan skrip, dan pengelolaan data uji dengan Faker. Memastikan fungsionalitas aplikasi web secara menyeluruh.",
-                portfolio1_tech: "Teknologi: Cypress, JavaScript, Faker, Page Object Model",
-                portfolio2_title: "API Testing Automation (Newman/Postman)",
-                portfolio2_desc: "Implementasi dan pengelolaan skrip otomatisasi pengujian API menggunakan Newman dan Postman Collection, memastikan fungsionalitas dan kinerja API secara berkelanjutan.",
-                portfolio2_tech: "Teknologi: Newman, Postman, JavaScript",
-                portfolio3_title: "Performance Testing (k6)",
-                portfolio3_desc: "Pengujian performa API menggunakan k6, mencakup penyiapan skenario beban, implementasi logika tes yang kompleks (misalnya, chain requests, token management), dan generasi laporan kinerja interaktif.",
-                portfolio3_tech: "Teknologi: k6, JavaScript, Node.js, k6-html-reporter",
-                portfolio4_title: "QA Manual Docs",
-                portfolio4_desc: "Sample pengujian manual, termasuk test plan, test case, dan laporan bug, yang digunakan untuk memastikan kualitas dan fungsionalitas aplikasi. Menunjukkan kemampuan dalam merancang dan melaksanakan strategi pengujian komprehensif.",
-                repo_link_text: "Repositori GitLab",
-                video_link_text: "Sample Video Test",
-                report_link_text: "Report",
-                docs_link_text: "Lihat Dokumentasi",
-                portfolio_note: "*Beberapa proyek bersifat internal perusahaan atau memiliki batasan akses. Tautan yang disediakan adalah contoh atau mengarah ke dokumentasi.",
-                portfolio_group2_title: "Proyek Pengembangan Fullstack",
-                fs_portfolio_pjt_title: "Sistem Informasi Kontrak Lahan SPPLS (Proyek PJT)",
-                fs_portfolio_pjt_desc: "Pengembangan aplikasi web manajemen kontrak sewa pakai lahan untuk PERUM JASA TIRTA II Unit Wilayah IV: manajemen kontrak, data penggarap, alur persetujuan, dashboard monitoring, laporan, dan rekapitulasi. Implementasi mengikuti desain modul dari design-pjt dengan autentikasi dan RBAC.",
-                fs_portfolio_pjt_tech: "Teknologi: Laravel 10, Sanctum, Casbin (RBAC), MySQL, Vite, ekspor PDF/Excel (DomPDF, Maatwebsite Excel), integrasi penyimpanan S3",
-                fs_portfolio1_title: "Aplikasi Government Suite – PT. Markit Digital Indonesia",
-                fs_portfolio1_desc: "Membangun dan mengembangkan serangkaian aplikasi web skala besar untuk lembaga pemerintahan: SIKERMA Kemendikbud, SIMBA Ditjenpas, SIMAE Dishub Kota Bogor, Broker Message KKP, dan APKERMA Kemendikbudristek.",
-                fs_portfolio1_tech: "Teknologi: Laravel, Vue.js, MySQL, REST API, BSRE, Bapenda",
-                fs_portfolio2_title: "Lab Document Management – PT. Lichemindo",
-                fs_portfolio2_desc: "Aplikasi pengelolaan dokumen pengujian laboratorium end-to-end, mencakup alur pengajuan, proses review, hingga publikasi hasil pengujian.",
-                fs_portfolio2_tech: "Teknologi: Next.js, GoFiber, PostgreSQL",
-                fs_portfolio3_title: "CRM Application – PT. Agrivest Global Group",
-                fs_portfolio3_desc: "Membangun aplikasi CRM lengkap untuk memfasilitasi proses penjualan dan pemasaran, termasuk manajemen lead, pipeline penjualan, dan pelaporan.",
-                fs_portfolio3_tech: "Teknologi: GoFiber, Next.js, Flask, PostgreSQL, Object Storage",
-                skills_title: "KEAHLIAN",
-                skills_qa_title: "Pengujian & QA:",
-                skills_qa_list: [
-                    "Functional Testing", "Performance Testing", "Regression Testing", "UAT (User Acceptance Testing)",
-                    "Katalon", "Selenium", "K6", "case.io", "Test Case Design", "Test Plan Development",
-                    "Bug Reporting", "Defect Tracking", "AI Workflow (n8n)", "API Testing",
-                    "Newman", "Postman", "Cypress"
-                ],
-                skills_dev_title: "Pengembangan & Teknologi:",
-                skills_dev_list: [
-                    "PHP", "JavaScript", "Go", "Laravel", "Vue.js", "Next.js", "Flask", "GoFiber",
-                    "MySQL", "PostgreSQL", "ClickUp", "REST API", "BSRE", "Bapenda"
-                ],
-                skills_soft_title: "Soft Skills:",
-                skills_soft_list: [
-                    "Komunikasi Efektif", "Kerja Sama Tim", "Pemecahan Masalah", "Manajemen Waktu",
-                    "Adaptabilitas Tinggi", "Detail-Oriented"
-                ],
-                education_title: "PENDIDIKAN",
-                edu1_degree: "Sarjana Terapan (D4) Teknik Informatika",
-                edu1_uni: "Politeknik Negeri Jakarta",
-                edu1_program: "CCIT - FTUI Network Administrator Professional (NAP)",
-                certifications_title: "SERTIFIKASI",
-                cert1_name: "IBM Data Analyst",
-                languages_title: "BAHASA",
-                lang1_id: "Bahasa Indonesia: Native",
-                lang2_en: "Bahasa Inggris: Beginner",
-                popup_title: "Selamat Datang!",
-                popup_description: "CV ini memiliki fitur pengganti bahasa. Klik tombol 'EN' di pojok kanan atas untuk beralih ke Bahasa Inggris, atau 'ID' untuk kembali ke Bahasa Indonesia.",
-                popup_button: "Mengerti!"
+                tagline: "Quality Assurance Engineer",
+                summary: "QA Engineer berpengalaman dengan keahlian mendalam dalam perancangan strategi pengujian komprehensif. Mahir dalam functional, performance, regression testing, dan UAT. Berpengalaman dengan Katalon, Selenium, Cypress, K6, Newman/Postman, dan otomatisasi AI Workflow (n8n). Fokus pada stabilitas dan kualitas perangkat lunak."
             },
             en: {
-                header_name: "Rio Ramadhan",
-                header_tagline: "Fullstack Developer & Quality Assurance Engineer",
-                contact_dob: '<i class="fas fa-calendar-alt icon"></i> Bogor, January 23, 1998',
-                summary_title: "PROFESSIONAL SUMMARY",
-                summary_text: "Experienced professional with a strong background as a Fullstack Developer and Quality Assurance Engineer, focused on improving software quality and operational efficiency. Proficient in the Software Development Life Cycle (SDLC), designing and executing functional testing, performance testing, and bug analysis. Skilled in using various QA tools such as Katalon, Selenium, K6, and competent in AI Workflow automation using n8n. Committed to delivering stable and high-quality software solutions.",
-                experience_title: "WORK EXPERIENCE",
-                exp1_position: "Quality Control Manual - Freelance",
-                exp1_company: "Astra Credit Companies (ACC) - Project Anyflow 2",
-                exp1_date: "December 8 - January 2, 2026",
-                exp1_task1: "Responsible for functional testing and regression testing on the Project Anyflow application.",
-                exp1_task2: "Created and executed test cases, reported bugs, and verified fixes with the development team.",
-                exp1_task3: "Used tools: Monday and performed exploratory testing to ensure quality before release.",
-                exp2_position: "Quality Control Manual - Freelance",
-                exp2_company: "Astra Credit Companies (ACC) - Project Banana",
-                exp2_date: "September 22 - November 18, 2025",
-                exp2_task1: "Responsible for functional testing and regression testing on the internal Project Banana application.",
-                exp2_task2: "Created and executed test cases, reported bugs, and verified fixes with the development team.",
-                exp2_task3: "Used tools: Monday and performed exploratory testing to ensure quality before release.",
-                exp3_position: "Quality Assurance Engineer",
-                exp3_company: "PT. Completed Innovation Technology",
-                exp3_date: "February 2024 - February 2025",
-                exp3_task1: "Designed and implemented comprehensive testing strategies, including functional and performance tests to ensure application quality.",
-                exp3_task2: "Actively collaborated with the development team for logic improvements and provided effective code improvement recommendations.",
-                exp3_task3: "Utilized key tools: Katalon, K6, Selenium, case.io, ClickUp, and possess understanding of Nest.js.",
-                exp4_position: "Fullstack Developer",
-                exp4_company: "PT. Markit Digital Indonesia",
-                exp4_date: "December 2020 - December 2023",
-                exp4_desc: "Involved in the development of various large-scale applications for government institutions, including:",
-                exp4_task1: "<strong>Cooperation System (SIKERMA) Kemendikbud:</strong> Management of Vocational School and Industry cooperation data (Laravel, MySQL).",
-                exp4_task2: "<strong>Building Management System (SIMBA) Ditjenpas:</strong> Management of building assets (Vue.js, Laravel, MySQL).",
-                exp4_task3: "<strong>Electronic Transportation Management System (SIMAE) Dishub Kota Bogor:</strong> Integration with BSRE and Bapenda (Vue.js, Laravel, REST API IDP, MySQL).",
-                exp4_task4: "<strong>Broker Message Satellite Based KKP:</strong> Management of satellite messages from ships (Vue.js, Laravel, REST API IDP, MySQL).",
-                exp4_task5: "<strong>Cooperation Application (APKERMA) Kemendikbudristek:</strong> Management of education, culture, research cooperation (Vue.js, Laravel, MySQL).",
-                exp5_position: "Fullstack Developer (Contract Project)",
-                exp5_company: "PT. Lichemindo",
-                exp5_desc: "Built a laboratory testing document management application, from submission to publication.",
-                exp5_task1: "Utilized Next.js, GoFiber, PostgreSQL.",
-                exp6_position: "Fullstack Developer (Contract Project)",
-                exp6_company: "PT. Agrivest Global Group",
-                exp6_task1: "Developed a CRM application to facilitate sales and marketing processes.",
-                exp6_task2: "Utilized GoFiber, Object Storage, Next.js, Flask, PostgreSQL.",
-                portfolio_title: "PORTFOLIO",
-                portfolio_group1_title: "QA Documentation & Automation",
-                portfolio1_title: "Cypress E2E Automation Testing",
-                portfolio1_desc: "Implemented End-to-End (E2E) automation testing using Cypress, including test case design, script writing, and test data management with Faker. Ensured comprehensive web application functionality.",
-                portfolio1_tech: "Technologies: Cypress, JavaScript, Faker, Page Object Model",
-                portfolio2_title: "API Testing Automation (Newman/Postman)",
-                portfolio2_desc: "Implemented and managed API testing automation scripts using Newman and Postman Collection, ensuring continuous API functionality and performance.",
-                portfolio2_tech: "Technologies: Newman, Postman, JavaScript",
-                portfolio3_title: "Performance Testing (k6)",
-                portfolio3_desc: "Performed API performance testing using k6, including setting up load scenarios, implementing complex test logic (e.g., chained requests, token management), and generating interactive performance reports.",
-                portfolio3_tech: "Technologies: k6, JavaScript, Node.js, k6-html-reporter",
-                portfolio4_title: "QA Manual Docs",
-                portfolio4_desc: "Sample manual testing documentation, including test plans, test cases, and bug reports, used to ensure application quality and functionality. Demonstrates ability in designing and executing comprehensive testing strategies.",
-                repo_link_text: "GitLab Repository",
-                video_link_text: "Sample Video Test",
-                report_link_text: "Report",
-                docs_link_text: "View Documentation",
-                portfolio_note: "*Some projects are internal to the company or have access restrictions. Provided links are examples or lead to documentation.",
-                portfolio_group2_title: "Fullstack Development Projects",
-                fs_portfolio_pjt_title: "Land Lease Contract Information System SPPLS (PJT Project)",
-                fs_portfolio_pjt_desc: "Web application development for land lease contract management for PERUM JASA TIRTA II Regional Unit IV: contract management, cultivator (penggarap) data, approval workflows, monitoring dashboards, reports, and aggregated recap. Module design aligned with the design-pjt specs, with authentication and RBAC.",
-                fs_portfolio_pjt_tech: "Technologies: Laravel 10, Sanctum, Casbin (RBAC), MySQL, Vite, PDF/Excel export (DomPDF, Maatwebsite Excel), S3 storage integration",
-                fs_portfolio1_title: "Government Applications Suite – PT. Markit Digital Indonesia",
-                fs_portfolio1_desc: "Built and developed a suite of large-scale web applications for government institutions: SIKERMA Kemendikbud, SIMBA Ditjenpas, SIMAE Dishub Bogor City, KKP Message Broker, and APKERMA Kemendikbudristek.",
-                fs_portfolio1_tech: "Technologies: Laravel, Vue.js, MySQL, REST API, BSRE, Bapenda",
-                fs_portfolio2_title: "Lab Document Management – PT. Lichemindo",
-                fs_portfolio2_desc: "End-to-end laboratory testing document management application, covering submission workflow, review process, and test result publication.",
-                fs_portfolio2_tech: "Technologies: Next.js, GoFiber, PostgreSQL",
-                fs_portfolio3_title: "CRM Application – PT. Agrivest Global Group",
-                fs_portfolio3_desc: "Built a complete CRM application to facilitate sales and marketing processes, including lead management, sales pipeline, and reporting.",
-                fs_portfolio3_tech: "Technologies: GoFiber, Next.js, Flask, PostgreSQL, Object Storage",
-                skills_title: "SKILLS",
-                skills_qa_title: "Testing & QA:",
-                skills_qa_list: [
-                    "Functional Testing", "Performance Testing", "Regression Testing", "User Acceptance Testing (UAT)",
-                    "Katalon", "Selenium", "K6", "case.io", "Test Case Design", "Test Plan Development",
-                    "Bug Reporting", "Defect Tracking", "AI Workflow (n8n)", "API Testing",
-                    "Newman", "Postman", "Cypress"
-                ],
-                skills_dev_title: "Development & Technologies:",
-                skills_dev_list: [
-                    "PHP", "JavaScript", "Go", "Laravel", "Vue.js", "Next.js", "Flask", "GoFiber",
-                    "MySQL", "PostgreSQL", "ClickUp", "REST API", "BSRE", "Bapenda"
-                ],
-                skills_soft_title: "Soft Skills:",
-                skills_soft_list: [
-                    "Effective Communication", "Teamwork", "Problem Solving", "Time Management",
-                    "High Adaptability", "Detail-Oriented"
-                ],
-                education_title: "EDUCATION",
-                edu1_degree: "Applied Bachelor (D4) Informatics Engineering",
-                edu1_uni: "Politeknik Negeri Jakarta",
-                edu1_program: "CCIT - FTUI Network Administrator Professional (NAP)",
-                certifications_title: "CERTIFICATIONS",
-                cert1_name: "IBM Data Analyst",
-                languages_title: "LANGUAGES",
-                lang1_id: "Indonesian: Native",
-                lang2_en: "English: Beginner",
-                popup_title: "Welcome!",
-                popup_description: "This CV has a language switch feature. Click the 'EN' button in the top right corner to switch to English, or 'ID' to return to Indonesian.",
-                popup_button: "Got it!"
+                tagline: "Quality Assurance Engineer",
+                summary: "Proactive QA Engineer with a strong track record in designing and executing end-to-end testing strategies. Expert in functional, performance, and regression testing with a focus on CI/CD integration. Proficient in automation tools including Cypress, Selenium, and Katalon. Committed to engineering bug-free, high-performance software solutions."
             }
-        };
-
-        let currentLanguage = 'id'; // Akan diatur oleh getInitialLanguage()
-        let currentMode = 'QA';   // 'QA' | 'FullStack'
-
-        // Fungsi untuk membuat skill tags secara dinamis
-        function createSkillTags(listId, skillsArray) {
-            const listElement = document.getElementById(listId);
-            if (listElement) {
-                listElement.innerHTML = ''; // Bersihkan list yang ada
-                skillsArray.forEach(skill => {
-                    const span = document.createElement('span');
-                    span.classList.add('skill-tag');
-                    span.textContent = skill;
-                    listElement.appendChild(span);
-                });
+        },
+        FullStack: {
+            id: {
+                tagline: "Fullstack Developer",
+                summary: "Fullstack Developer dengan 4+ tahun pengalaman membangun aplikasi web skala besar untuk pemerintahan dan korporat. Menguasai Laravel, Vue.js, Next.js, GoFiber, dan Flask. Berpengalaman dalam integrasi API, manajemen database MySQL/PostgreSQL, serta siklus hidup pengembangan aplikasi dari konsep hingga deployment."
+            },
+            en: {
+                tagline: "Fullstack Developer",
+                summary: "Innovative Fullstack Developer with 4+ years of experience delivering robust web applications for government and enterprise sectors. Specialized in creating scalable architectures using Laravel, Vue.js, and Go-based microservices. Proven ability to manage the full SDLC, from initial concept and DB design to secure deployment and API orchestration."
             }
         }
-
-        // Fungsi untuk memperbarui semua teks di halaman berdasarkan currentLanguage
-        function updateContent() {
-            const elements = document.querySelectorAll('[data-key]');
-            elements.forEach(element => {
-                const key = element.getAttribute('data-key');
-                if (translations[currentLanguage][key]) {
-                    if (element.tagName === 'A' || key === 'contact_dob' || key.includes('_task') || key.includes('_tech') || key.includes('_link_text')) {
-                        element.innerHTML = translations[currentLanguage][key];
-                    } else {
-                        element.textContent = translations[currentLanguage][key];
-                    }
+    },
+    translations: {
+        id: {
+            header_name: "Rio Ramadhan",
+            header_tagline: "Fullstack Developer & Quality Assurance Engineer",
+            summary_title: "Ringkasan Profesional",
+            experience_title: "Pengalaman Kerja",
+            portfolio_title: "Portofolio",
+            skills_title: "Keahlian",
+            education_title: "Pendidikan",
+            certifications_title: "Sertifikasi",
+            languages_title: "Bahasa",
+            contact_dob: "23 Januari 1998",
+            portfolio_link_text: "Portofolio",
+            edu1_degree: "Sarjana Terapan (D4) Teknik Informatika",
+            edu1_uni: "Politeknik Negeri Jakarta",
+            edu1_program: "CCIT - FTUI Network Administrator Professional",
+            cert1_name: "IBM Data Analyst Professional",
+            lang1_id: "Bahasa Indonesia (Native)",
+            lang2_en: "English (Menengah)",
+            popup_title: "Selamat Datang!",
+            popup_description: "CV ini memiliki fitur pengganti bahasa dan mode profile. Gunakan panel di kanan atas.",
+            popup_button: "Mulai",
+            repo_text: "Repositori",
+            report_text: "Laporan",
+            video_text: "Video Demo",
+            docs_text: "Dokumentasi",
+            live_text: "Lihat Aplikasi",
+            internal_text: "Aplikasi Internal"
+        },
+        en: {
+            header_name: "Rio Ramadhan",
+            summary_title: "Professional Profile",
+            experience_title: "Professional Experience",
+            portfolio_title: "Key Projects",
+            skills_title: "Technical Expertise",
+            education_title: "Education",
+            certifications_title: "Certifications",
+            languages_title: "Languages",
+            contact_dob: "January 23, 1998",            portfolio_link_text: "Portfolio",
+            edu1_degree: "B.Sc. in Informatics Engineering (Applied)",
+            edu1_uni: "Jakarta State Polytechnic",
+            edu1_program: "CCIT - FTUI (Network Systems Administrator)",
+            cert1_name: "IBM Data Analyst Professional Certificate",
+            lang1_id: "Indonesian (Native)",
+            lang2_en: "English (CEFR B2+ Written | A2 Spoken)",
+            popup_title: "Welcome!",
+            popup_description: "Switch between profile modes and languages using the top-right controls.",
+            popup_button: "View CV",
+            repo_text: "View GitHub",
+            report_text: "Report",
+            video_text: "Demo Video",
+            docs_text: "Documentation",
+            live_text: "Live App",
+            internal_text: "Internal Application"
+        }
+    },
+    experience: {
+        QA: [
+            {
+                role: { id: "QA Engineer (Freelance)", en: "QA Engineer (Freelance)" },
+                company: "Haus! Indonesia - Inventory System",
+                date: { id: "2024 - 2025", en: "2024 - 2025" },
+                tasks: {
+                    id: ["Pengujian fungsional end-to-end pada modul Transfer In/Out, Stock Opname, dan Waste.", "Verifikasi integrasi API stok dan sinkronisasi data antar outlet."],
+                    en: ["End-to-end functional testing for Transfer In/Out, Stock Opname, and Waste modules.", "Verified stock API integrations and data synchronization between outlets."]
                 }
-            });
-
-            const dateRanges = document.querySelectorAll('.date-range');
-            dateRanges.forEach(element => {
-                const idText = element.getAttribute('data-key-id');
-                const enText = element.getAttribute('data-key-en');
-                if (currentLanguage === 'id' && idText) {
-                    element.textContent = idText;
-                } else if (currentLanguage === 'en' && enText) {
-                    element.textContent = enText;
+            },
+            {
+                role: { id: "QC Manual - Freelance", en: "QA Specialist (Manual) - Freelance" },
+                company: "Astra Credit Companies (ACC) - Anyflow 2",
+                date: { id: "Des 2025 - Jan 2026", en: "Dec 2025 - Jan 2026" },
+                tasks: {
+                    id: ["Pengujian fungsional & regression pada Project Anyflow.", "Membuat test case, lapor bug, & verifikasi perbaikan.", "Tools: Monday, Exploratory Testing."],
+                    en: [
+                        "Spearheaded end-to-end functional and regression testing for the Anyflow ecosystem.",
+                        "Devised comprehensive test cases and managed bug lifecycles using Monday.com, ensuring high-quality release standards.",
+                        "Executed critical exploratory testing sessions discovered 10+ edge cases prior to deployment."
+                    ]
                 }
-            });
-
-            document.querySelectorAll('.lang-button').forEach(button => {
-                button.classList.remove('active');
-            });
-            document.getElementById(`lang-${currentLanguage}`).classList.add('active');
-
-            document.documentElement.lang = currentLanguage;
-
-            createSkillTags('qa-skills-list', translations[currentLanguage].skills_qa_list);
-            createSkillTags('dev-skills-list', translations[currentLanguage].skills_dev_list);
-            createSkillTags('soft-skills-list', translations[currentLanguage].skills_soft_list);
-
-            // Re-apply mode-specific text overrides after language update
-            applyModeContentOverrides();
-        }
-
-        function saveOriginalDateRanges() {
-            const dateRanges = document.querySelectorAll('.date-range');
-            dateRanges.forEach(element => {
-                const currentText = element.textContent;
-                if (currentText.includes('8 Desember')) {
-                    element.setAttribute('data-key-id', currentText);
-                    element.setAttribute('data-key-en', 'December 8 - January 2, 2026');
-                } else if (currentText.includes('22 September')) {
-                    element.setAttribute('data-key-id', currentText);
-                    element.setAttribute('data-key-en', 'September 22 - November 18, 2025');
-                } else if (currentText.includes('Februari 2024')) {
-                    element.setAttribute('data-key-id', currentText);
-                    element.setAttribute('data-key-en', 'February 2024 - February 2025');
-                } else if (currentText.includes('Desember 2020')) {
-                    element.setAttribute('data-key-id', currentText);
-                    element.setAttribute('data-key-en', 'December 2020 - December 2023');
+            },
+            {
+                role: { id: "QC Manual - Freelance", en: "QA Auditor (Manual) - Freelance" },
+                company: "Astra Credit Companies (ACC) - Project Banana",
+                date: { id: "Sep 2025 - Nov 2025", en: "Sep 2025 - Nov 2025" },
+                tasks: {
+                    id: ["Eksploratory testing pada aplikasi internal Banana.", "Memastikan kualitas release & verifikasi bug fix."],
+                    en: [
+                        "Managed software quality assurance for the Banana internal application via systematic exploratory testing.",
+                        "Verified critical bug fixes and collaborated with developers to maintain zero-regression deployment cycles."
+                    ]
                 }
-            });
-        }
-
-        // ─── Mode Functions ───────────────────────────────────────────────────────
-        function getInitialMode() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const modeParam = urlParams.get('mode');
-            if (modeParam === 'FullStack') {
-                return 'FullStack';
-            }
-            return 'QA';
-        }
-
-        function applyModeContentOverrides() {
-            if (modeContent[currentMode] && modeContent[currentMode][currentLanguage]) {
-                const modeData = modeContent[currentMode][currentLanguage];
-                Object.keys(modeData).forEach(key => {
-                    const el = document.querySelector(`[data-key="${key}"]`);
-                    if (el) el.textContent = modeData[key];
-                });
-            }
-        }
-
-        function applyMode(mode) {
-            currentMode = mode;
-
-            // Update mode button active state
-            document.querySelectorAll('.mode-button').forEach(btn => btn.classList.remove('active'));
-            const btnId = mode === 'FullStack' ? 'mode-fs' : 'mode-qa';
-            document.getElementById(btnId).classList.add('active');
-
-            // Show/hide elements based on data-mode-show attribute
-            document.querySelectorAll('[data-mode-show]').forEach(el => {
-                const elMode = el.getAttribute('data-mode-show');
-                if (elMode === mode) {
-                    el.classList.remove('mode-hidden');
-                } else {
-                    el.classList.add('mode-hidden');
+            },
+            {
+                role: { id: "Quality Assurance Engineer", en: "Quality Assurance Engineer" },
+                company: "PT. Completed Innovation Technology",
+                date: { id: "Feb 2024 - Feb 2025", en: "Feb 2024 - Feb 2025" },
+                tasks: {
+                    id: ["Functional & performance test (Katalon, K6, Selenium).", "Kolaborasi dengan dev untuk optimasi logika & kode.", "Tools: case.io, ClickUp, Nest.js awareness."],
+                    en: [
+                        "Architected automated testing workflows using Katalon and Selenium, significantly reducing manual regression time.",
+                        "Executed high-load performance testing using K6 to ensure system stability under peak traffic.",
+                        "Optimized code logic by collaborating directly with backend teams, leveraging a foundational understanding of Nest.js architectures."
+                    ]
                 }
-            });
-
-            // Apply content overrides (tagline, summary)
-            applyModeContentOverrides();
-
-            // Sync URL
-            updateUrlMode(mode);
-        }
-
-        function updateUrlMode(mode) {
-            const url = new URL(window.location.href);
-            if (!mode || mode === 'QA') {
-                url.searchParams.delete('mode');
-            } else {
-                url.searchParams.set('mode', mode);
             }
-            history.pushState({ lang: currentLanguage, mode }, '', url.toString());
-        }
-        // ─────────────────────────────────────────────────────────────────────────
-
-        function getInitialLanguage() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const langParam = urlParams.get('lang');
-
-            if (langParam && (langParam === 'id' || langParam === 'en')) {
-                return langParam;
-            }
-
-            const browserLanguage = navigator.language.split('-')[0];
-            if (browserLanguage && translations[browserLanguage]) {
-                return browserLanguage;
-            }
-
-            return 'id';
-        }
-
-        function updateUrlLanguage(lang) {
-            const url = new URL(window.location.href);
-            if (lang === 'id') {
-                url.searchParams.delete('lang');
-            } else {
-                url.searchParams.set('lang', lang);
-            }
-            history.pushState({ lang: lang }, '', url.toString());
-        }
-
-        document.getElementById('lang-id').addEventListener('click', () => {
-            currentLanguage = 'id';
-            updateContent();
-            updateUrlLanguage('id');
-        });
-
-        document.getElementById('lang-en').addEventListener('click', () => {
-            currentLanguage = 'en';
-            updateContent();
-            updateUrlLanguage('en');
-        });
-
-        document.getElementById('mode-qa').addEventListener('click', () => applyMode('QA'));
-        document.getElementById('mode-fs').addEventListener('click', () => applyMode('FullStack'));
-
-        // --- Logic for Popup Guide ---
-        const guideModalOverlay = document.getElementById('languageGuideModalOverlay');
-        const closeGuideButton = document.getElementById('closeGuideButton');
-
-        function showGuidePopup() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const noPopupParam = urlParams.get('no-popup');
-
-            // Jika 'no-popup=true' ada di URL, jangan tampilkan popup
-            if (noPopupParam && noPopupParam.toLowerCase() === 'true') {
-                return;
-            }
-
-            // Jika popup sudah pernah ditampilkan di localStorage, jangan tampilkan lagi
-            if (localStorage.getItem('languageGuideShown')) {
-                return;
-            }
-
-            // Tetapkan teks popup ke bahasa Inggris secara eksplisit
-            const popupElements = guideModalOverlay.querySelectorAll('[data-key]');
-            popupElements.forEach(element => {
-                const key = element.getAttribute('data-key');
-                if (translations.en[key]) {
-                    if (element.tagName === 'A' || key.includes('_task') || key.includes('_tech') || key.includes('_link_text')) {
-                        element.innerHTML = translations.en[key];
-                    } else {
-                        element.textContent = translations.en[key];
-                    }
+        ],
+        FullStack: [
+            {
+                role: { id: "Fullstack Developer", en: "Fullstack Developer" },
+                company: "Otello",
+                date: { id: "Januari 2026 - Februari 2026", en: "Jan 2026 - Feb 2026" },
+                tasks: {
+                    id: [
+                        "Mengembangkan integrasi WhatsApp Service pada platform LMS Otello untuk pengiriman pesan otomatis kepada orang tua terkait aktivitas anak.",
+                        "Membangun arsitektur backend menggunakan NestJS dan antarmuka web admin dengan Next.js.",
+                        "Berkolaborasi dalam pengembangan fitur aplikasi mobile menggunakan Flutter."
+                    ],
+                    en: [
+                        "Developed WhatsApp Service integration for the Otello LMS platform to automate parent notifications regarding student activities.",
+                        "Architected backend services using NestJS and built the administrative web interface with Next.js.",
+                        "Collaborated on mobile application feature implementation using Flutter."
+                    ]
                 }
-            });
-
-            guideModalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            localStorage.setItem('languageGuideShown', 'true');
-        }
-
-        function hideGuidePopup() {
-            guideModalOverlay.classList.remove('active');
-            document.body.style.overflow = 'scroll';
-            setTimeout(() => {
-                guideModalOverlay.style.display = 'none'; 
-            }, 300);
-        }
-
-        closeGuideButton.addEventListener('click', hideGuidePopup);
-        // --- End Logic for Popup Guide ---
-
-
-        // Jalankan saat dokumen dimuat
-        document.addEventListener('DOMContentLoaded', () => {
-            saveOriginalDateRanges();
-
-            currentLanguage = getInitialLanguage();
-            updateContent();
-
-            currentMode = getInitialMode();
-            applyMode(currentMode);
-
-            showGuidePopup();
-        });
-
-        // Tangani tombol back/forward browser
-        window.addEventListener('popstate', (event) => {
-            const lang = event.state && event.state.lang;
-            if (lang && lang !== currentLanguage) {
-                currentLanguage = lang;
-                updateContent();
-            } else if (!lang && currentLanguage !== 'id') {
-                currentLanguage = 'id';
-                updateContent();
+            },
+            {
+                role: { id: "Fullstack Developer (Contract)", en: "Fullstack Developer (Contract)" },
+                company: "Fakultas Psikologi Universitas Indonesia",
+                date: { id: "2024", en: "2024" },
+                tasks: {
+                    id: ["Membangun sistem informasi pendaftaran hingga pencatatan hasil ujian skripsi.", "Menggunakan Laravel dan Vue.js untuk alur kerja yang dinamis."],
+                    en: ["Developed a comprehensive thesis exam information system from registration to result recording.", "Utilized Laravel and Vue.js to create a dynamic and efficient workflow."]
+                }
+            },
+            {
+                role: { id: "Fullstack Developer (Contract)", en: "Fullstack Developer (Contract)" },
+                company: "Haus! Indonesia",
+                date: { id: "2024 - 2025", en: "2024 - 2025" },
+                tasks: {
+                    id: [
+                        "Mengembangkan modul inti pada Inventory Management System Haus!, mencakup Transfer Out, Transfer In, Material Request, Stock Opname, dan Waste.",
+                        "Membangun API yang robust menggunakan NestJS dan aplikasi mobile operasional dengan Flutter."
+                    ],
+                    en: [
+                        "Developed core modules for the Haus! Inventory Management System, including Transfer Out, Transfer In, Material Request, Stock Opname, and Waste.",
+                        "Built robust backend APIs using NestJS and mobile operational applications with Flutter."
+                    ]
+                }
+            },
+            {
+                role: { id: "Senior Fullstack Developer", en: "Senior Fullstack Developer" },
+                company: "PT. Markit Digital Indonesia",
+                date: { id: "Des 2020 - Des 2023", en: "Dec 2020 - Dec 2023" },
+                tasks: {
+                    id: [
+                        "SIKERMA Kemendikbud: Pengelolaan data kerjasama SMK (Laravel, MySQL).",
+                        "SIMBA Ditjenpas: Manajemen aset bangunan (Vue.js, Laravel).",
+                        "SIMAE Dishub Bogor: Integrasi BSRE & Bapenda (Vue.js, Laravel, API).",
+                        "Broker Message KKP: Pengelolaan pesan satelit kapal (Vue.js, Laravel, API).",
+                        "APKERMA Kemendikbudristek: Dokumentasi kerjasama riset (Vue.js, Laravel)."
+                    ],
+                    en: [
+                        "SIKERMA (Education Ministry): Engineered a large-scale data management system for vocational school partnerships (Laravel/MySQL).",
+                        "SIMBA (Justice Ministry): Orchestrated a building asset management system using Vue.js and Laravel, improving data accuracy by 20%.",
+                        "SIMAE (Transport Dept): Integrated secure API gateways with BSRE for electronic transport management (Vue.js/Laravel).",
+                        "KKP Message Broker: Developed a satellite-based message broker for ship monitoring (Laravel/Vue/REST API).",
+                        "APKERMA (Research & Tech): Built a centralized research collaboration portal for the Ministry of Research."
+                    ]
+                }
+            },
+            {
+                role: { id: "Fullstack Developer (Contract)", en: "Fullstack Developer (Contract)" },
+                company: "PT. Agrivest Global Group",
+                date: { id: "2023", en: "2023" },
+                tasks: {
+                    id: ["Membangun aplikasi CRM untuk memfasilitasi proses penjualan, lead management, dan pelaporan.", "Menggunakan GoFiber, Next.js, Flask, PostgreSQL, Object Storage."],
+                    en: [
+                        "Developed a comprehensive CRM application to streamline sales pipelines, lead management, and reporting.",
+                        "Leveraged GoFiber, Next.js, and Flask with PostgreSQL and Object Storage for scalable data handling."
+                    ]
+                }
+            },
+            {
+                role: { id: "Fullstack Developer (Contract)", en: "Fullstack Developer (Contract)" },
+                company: "PT. Lichemindo",
+                date: { id: "2023", en: "2023" },
+                tasks: {
+                    id: ["Membangun dokumentasi lab end-to-end (Next.js, GoFiber, Postgres)."],
+                    en: [
+                        "Developed an end-to-end laboratory document management platform utilizing Next.js, GoFiber, and PostgreSQL.",
+                        "Streamlined the certification publishing process, reducing administrative overhead by 30%."
+                    ]
+                }
             }
+        ]
+    },
+    portfolio: {
+        QA: [
+            { id: { id: "Cypress E2E Otomasi", en: "Cypress E2E Automation" }, tech: "Cypress, JS, Faker, Page Object Model", links: [{ textKey: "repo_text", url: "https://gitlab.com/towel423/cypress-starterpack.git" }, { textKey: "video_text", url: "https://drive.google.com/file/d/1fQ3W8le0qZR0Q_kJi9Z2zlzi2UIAOmP9/view?usp=sharing" }] },
+            { id: { id: "Otomasi API (Newman)", en: "API Automation (Newman)" }, tech: "Newman, Postman, JavaScript, CI/CD", links: [{ textKey: "repo_text", url: "https://gitlab.com/towel423/newman.git" }, { textKey: "report_text", url: "https://towel423.github.io/newman-report.github.io/" }] },
+            { id: { id: "Performance Test (k6)", en: "Performance Testing (k6)" }, tech: "k6, JS, Node.js, HTML Reporter", links: [{ textKey: "repo_text", url: "https://gitlab.com/towel423/k6-performance-test" }, { textKey: "report_text", url: "https://towel423.github.io/k6-porto.github.io/" }] },
+            { id: { id: "Dokumentasi Manual QA", en: "QA Manual Documentation" }, tech: "Test Plan, Test Cases, Bug Reports", links: [{ textKey: "docs_text", url: "https://drive.google.com/drive/folders/1P0CTdaqzJZU1A3AI0-wtqkZ3PMHKFNbJ?usp=sharing" }] }
+        ],
+        FullStack: [
+            { id: { id: "Haus! Inventory Management System", en: "Haus! Inventory Management System" }, tech: "NestJS, Flutter, MySQL, REST API", links: [{ textKey: "internal_text", url: "#" }] },
+            { id: { id: "LMS Otello (WhatsApp Service)", en: "Otello LMS (WhatsApp Service)" }, tech: "Next.js, NestJS, Flutter, WhatsApp API", links: [{ textKey: "live_text", url: "http://103.150.196.53:3009/" }] },
+            { id: { id: "Sistem Ujian Skripsi F.PSi UI", en: "Psychology UI Thesis Exam System" }, tech: "Laravel, Vue.js, MySQL", links: [{ textKey: "live_text", url: "https://ujian.portal-psikoui.com/login" }] },
+            { id: { id: "Kontrak Lahan SPPLS", en: "SPPLS Land Lease System" }, tech: "Laravel 10, Sanctum, Casbin RBAC, Vite", links: [{ textKey: "live_text", url: "https://apps.jnc-uw4.com/login" }] }
+        ]
+    },
+    skills: {
+        QA: [
+            { title: { id: "Domain Pengujian", en: "Testing Domains" }, tags: ["Functional", "Performance", "Security/OWASP", "UAT", "Regression", "Exploratory"] },
+            { title: { id: "Otomasi & Tools", en: "Automation & Frameworks" }, tags: ["Cypress", "Katalon Studio", "Selenium", "K6", "Postman/Newman", "AI Workflow (n8n)", "case.io"] }
+        ],
+        FullStack: [
+            { title: "Backend Systems", tags: ["PHP/Laravel", "Go/GoFiber", "Python/Flask", "Node.js/Nest.js", "MySQL/PostgreSQL", "Object Storage"] },
+            { title: "Frontend Engineering", tags: ["Vue.js/Vuex", "Next.js/React", "Vite", "Tailwind CSS", "Bootstrap"] }
+        ],
+        Common: [
+            { title: { id: "Metodologi & Tools", en: "Methodologies & Tools" }, tags: ["Agile/Scrum", "CI/CD Pipelines", "Git Workflow", "REST API", "System Architecture", "ClickUp", "Monday.com"] }
+        ]
+    }
+};
 
-            const mode = (event.state && event.state.mode) || 'QA';
-            if (mode !== currentMode) {
-                currentMode = mode;
-                applyMode(currentMode);
-            }
-        });
-    </script>
+/**
+ * RE-DESIGNED APP LOGIC
+ */
+let state = {
+    lang: 'id',
+    mode: 'QA'
+};
+
+const elements = {
+    welcomeModal: document.getElementById('welcomeModal'),
+    experienceContainer: document.getElementById('experience-list'),
+    portfolioContainer: document.getElementById('portfolio-list'),
+    skillsContainer: document.getElementById('skills-sections'),
+    dobWrapper: document.getElementById('contact-dob-wrapper')
+};
+
+function render() {
+    // 1. Static Translations
+    document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (contentData.translations[state.lang][key] !== undefined) {
+            el.innerHTML = contentData.translations[state.lang][key];
+        }
+    });
+
+    // 2. Mode-Specific Header/Summary
+    const modeInfo = contentData.modes[state.mode][state.lang];
+    document.querySelector('[data-key="header_tagline"]').textContent = modeInfo.tagline;
+    document.querySelector('[data-key="summary_text"]').textContent = modeInfo.summary;
+
+    // 3. Experience Items
+    elements.experienceContainer.innerHTML = '';
+    contentData.experience[state.mode].forEach(item => {
+        const itemEl = document.createElement('div');
+        itemEl.className = 'item-card';
+        itemEl.innerHTML = `
+            <div class="item-header">
+                <div>
+                    <h3 class="item-title">${item.role[state.lang]}</h3>
+                    <p class="item-subtitle">${item.company}</p>
+                </div>
+                <span class="item-meta">${item.date[state.lang]}</span>
+            </div>
+            <ul class="item-list">
+                ${item.tasks[state.lang].map(t => `<li>${t}</li>`).join('')}
+            </ul>
+        `;
+        elements.experienceContainer.appendChild(itemEl);
+    });
+
+    // 4. Portfolio Items
+    elements.portfolioContainer.innerHTML = '';
+    contentData.portfolio[state.mode].forEach(item => {
+        const portEl = document.createElement('div');
+        portEl.className = 'item-card';
+        const title = typeof item.id === 'string' ? item.id : item.id[state.lang];
+        portEl.innerHTML = `
+            <h3 class="item-subtitle">${title}</h3>
+            <p class="item-meta">${item.tech}</p>
+            <div class="portfolio-links">
+                ${item.links.map(link => `
+                    <a href="${link.url}" target="_blank" class="btn-outline">
+                        <i class="fas fa-external-link-alt"></i> ${contentData.translations[state.lang][link.textKey]}
+                    </a>
+                `).join('')}
+            </div>
+        `;
+        elements.portfolioContainer.appendChild(portEl);
+    });
+
+    // 5. Skills
+    elements.skillsContainer.innerHTML = '';
+    const activeSkills = [...contentData.skills[state.mode], ...contentData.skills.Common];
+    activeSkills.forEach(group => {
+        const groupEl = document.createElement('div');
+        groupEl.className = 'skill-group';
+        const title = typeof group.title === 'string' ? group.title : group.title[state.lang];
+        groupEl.innerHTML = `
+            <h3>${title}</h3>
+            <div class="tags-container">
+                ${group.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
+        `;
+        elements.skillsContainer.appendChild(groupEl);
+    });
+
+    // Anti-discrimination Logic
+    elements.dobWrapper.classList.toggle('hidden', state.lang === 'en');
+
+    // UI Updates
+    document.querySelectorAll('.segment-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(`lang-${state.lang}`).classList.add('active');
+    document.getElementById(`mode-${state.mode === 'QA' ? 'qa' : 'fs'}`).classList.add('active');
+}
+
+/**
+ * URL STATE SYNC
+ */
+function updateStateFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get('lang');
+    const mode = params.get('mode');
+
+    if (lang && contentData.translations[lang.toLowerCase()]) {
+        state.lang = lang.toLowerCase();
+    }
+    if (mode) {
+        const m = mode.toLowerCase();
+        if (m === 'qa') state.mode = 'QA';
+        if (m === 'fullstack' || m === 'fs') state.mode = 'FullStack';
+    }
+}
+
+function syncURLFromState() {
+    const url = new URL(window.location);
+    url.searchParams.set('lang', state.lang.toUpperCase());
+    url.searchParams.set('mode', state.mode === 'FullStack' ? 'FS' : 'QA');
+    window.history.pushState({}, '', url);
+}
+
+window.addEventListener('popstate', () => {
+    updateStateFromURL();
+    render();
+});
+
+// Event Listeners
+document.getElementById('lang-id').addEventListener('click', () => { state.lang = 'id'; syncURLFromState(); render(); });
+document.getElementById('lang-en').addEventListener('click', () => { state.lang = 'en'; syncURLFromState(); render(); });
+document.getElementById('mode-qa').addEventListener('click', () => { state.mode = 'QA'; syncURLFromState(); render(); });
+document.getElementById('mode-fs').addEventListener('click', () => { state.mode = 'FullStack'; syncURLFromState(); render(); });
+
+document.getElementById('closeModal').addEventListener('click', () => {
+    elements.welcomeModal.classList.remove('active');
+    setTimeout(() => elements.welcomeModal.style.display = 'none', 400);
+});
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+    updateStateFromURL();
+    render();
+    if (!localStorage.getItem('cv_v2_guide')) {
+        elements.welcomeModal.classList.add('active');
+        localStorage.setItem('cv_v2_guide', 'true');
+    } else {
+        elements.welcomeModal.style.display = 'none';
+    }
+});
+</script>
 </body>
 </html>
