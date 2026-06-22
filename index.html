@@ -499,9 +499,10 @@
     <div class="container">
         <!-- Controls -->
         <div class="controls-overlay">
-            <div class="segmented-control">
-                <button id="mode-qa" class="segment-btn active">QA Engineer</button>
-                <button id="mode-fs" class="segment-btn">Fullstack Dev</button>
+            <!-- QA Mode selector hidden as requested -->
+            <div class="segmented-control" style="display: none;">
+                <button id="mode-qa" class="segment-btn">QA Engineer</button>
+                <button id="mode-fs" class="segment-btn active">Fullstack Dev</button>
             </div>
             <div class="segmented-control">
                 <button id="lang-id" class="segment-btn active">ID</button>
@@ -518,7 +519,7 @@
         <!-- Header -->
         <header>
             <h1 data-key="header_name">Rio Ramadhan</h1>
-            <p class="tagline" data-key="header_tagline">Fullstack Developer & Quality Assurance Engineer</p>
+            <p class="tagline" data-key="header_tagline">Fullstack Developer</p>
 
             <div class="contact-grid">
                 <div class="contact-item" id="contact-dob-wrapper">
@@ -572,10 +573,13 @@
 
                 <section>
                     <h2 class="section-title" data-key="education_title">PENDIDIKAN</h2>
-                    <div class="item-card">
+                    <div class="item-card" style="margin-bottom: 16px;">
                         <h3 class="item-subtitle" data-key="edu1_degree">Sarjana Terapan (D4) Teknik Informatika</h3>
                         <p class="item-title" data-key="edu1_uni">Politeknik Negeri Jakarta</p>
-                        <p class="item-meta" data-key="edu1_program">CCIT - FTUI (Network Administrator)</p>
+                    </div>
+                    <div class="item-card">
+                        <h3 class="item-subtitle" data-key="edu2_degree">Network Administrator Professional</h3>
+                        <p class="item-title" data-key="edu2_uni">University of Indonesia - NIIT</p>
                     </div>
                 </section>
 
@@ -597,15 +601,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <!-- <div id="welcomeModal" class="modal-overlay">
-    <div class="modal-card">
-        <h3 data-key="popup_title">Selamat Datang!</h3>
-        <p data-key="popup_description">Pilih mode tampilan dan bahasa menggunakan panel di bagian kanan atas.</p>
-        <button id="closeModal" class="btn-primary" data-key="popup_button">Mulai</button>
-    </div>
-</div> -->
-
     <script>
         /**
          * DATA DEFINITION
@@ -626,18 +621,18 @@
                 FullStack: {
                     id: {
                         tagline: "Fullstack Developer",
-                        summary: "Fullstack Developer inovatif dengan 4+ tahun pengalaman menghasilkan aplikasi web yang tangguh untuk sektor pemerintahan dan korporat. Memiliki spesialisasi dalam merancang arsitektur skala besar menggunakan Laravel, Vue.js, dan microservices berbasis Go. Terbukti mampu mengelola seluruh siklus SDLC, dari konsep awal dan desain DB hingga deployment yang aman dan orkestrasi API."
+                        summary: "Fullstack Developer inovatif dengan 6+ tahun pengalaman menghasilkan aplikasi web yang tangguh untuk sektor pemerintahan dan korporat. Memiliki spesialisasi dalam merancang arsitektur skala besar menggunakan Laravel, Vue.js, dan microservices berbasis Go. Terbukti mampu mengelola seluruh siklus SDLC, dari konsep awal dan desain DB hingga deployment yang aman dan orkestrasi API."
                     },
                     en: {
                         tagline: "Fullstack Developer",
-                        summary: "Innovative Fullstack Developer with 4+ years of experience delivering robust web applications for government and enterprise sectors. Specialized in creating scalable architectures using Laravel, Vue.js, and Go-based microservices. Proven ability to manage the full SDLC, from initial concept and DB design to secure deployment and API orchestration."
+                        summary: "Innovative Fullstack Developer with 6+ years of experience delivering robust web applications for government and enterprise sectors. Specialized in creating scalable architectures using Laravel, Vue.js, and Go-based microservices. Proven ability to manage the full SDLC, from initial concept and DB design to secure deployment and API orchestration."
                     }
                 }
             },
             translations: {
                 id: {
                     header_name: "Rio Ramadhan",
-                    header_tagline: "Fullstack Developer & Quality Assurance Engineer",
+                    header_tagline: "Fullstack Developer",
                     summary_title: "Ringkasan Profesional",
                     experience_title: "Pengalaman Kerja",
                     portfolio_title: "Portofolio",
@@ -650,6 +645,8 @@
                     edu1_degree: "Sarjana Terapan (D4) Teknik Informatika",
                     edu1_uni: "Politeknik Negeri Jakarta",
                     edu1_program: "CCIT - FTUI Network Administrator Professional",
+                    edu2_degree: "Network Administrator Professional",
+                    edu2_uni: "Universitas Indonesia - NIIT",
                     cert1_name: "IBM Data Analyst Professional",
                     lang1_id: "Bahasa Indonesia (Native)",
                     lang2_en: "English (Menengah)",
@@ -676,6 +673,8 @@
                     edu1_degree: "B.Sc. in Informatics Engineering (Applied)",
                     edu1_uni: "Jakarta State Polytechnic",
                     edu1_program: "CCIT - FTUI (Network Systems Administrator)",
+                    edu2_degree: "Network Administrator Professional",
+                    edu2_uni: "University of Indonesia - NIIT",
                     cert1_name: "IBM Data Analyst Professional Certificate",
                     lang1_id: "Indonesian (Native)",
                     lang2_en: "English (CEFR B2+ Written | A2 Spoken)",
@@ -753,12 +752,12 @@
                             id: [
                                 "Menyelesaikan integrasi WhatsApp Service, mengotomatisasi pengiriman notifikasi realtime kepada member pengguna aktif bulanan (MAU).",
                                 "Menerapkan protokol enkripsi pada backend NestJS untuk melindungi privasi data siswa yang sensitif.",
-                                "Mempercepat waktu respon API sebesar 30% melalui implementasi strategis dari sistem caching terdistribusi menggunakan Redis."
+                                "Melakukan optimasi performa backend untuk mempercepat respon API pada modul-modul utama."
                             ],
                             en: [
                                 "Delivered a real-time WhatsApp Service integration, automating notification delivery for member monthly active users (MAU).",
                                 "Implemented data encryption within the NestJS backend to protect sensitive student privacy data.",
-                                "Accelerated API response times by 30% through the strategic implementation of distributed Redis caching mechanisms."
+                                "Optimized backend performance to improve API response times across core modules."
                             ]
                         }
                     },
@@ -770,12 +769,12 @@
                             id: [
                                 "Membangun modul inti Inventory Management System yang secara aman memproses ribuan transaksi operasional harian.",
                                 "Mengamankan arsitektur microservices dengan menerapkan API Gateway, rate-limiting ketat, dan JWT Authentication berbasis Role-Based Access Control (RBAC).",
-                                "Meningkatkan efisiensi sinkronisasi stok inventori antar 200+ cabang hingga 45% menggunakan query database yang dioptimalkan dan desain API yang tangguh."
+                                "Mengoptimalkan query database dan desain API untuk memperlancar sinkronisasi data stok inventori antar 200+ cabang."
                             ],
                             en: [
                                 "Engineered core modules for the Inventory Management System, securely processing thousands of daily operational transactions.",
                                 "Secured the microservices architecture by implementing an API Gateway, strict rate-limiting, and RBAC-based JWT Authentication.",
-                                "Increased inter-branch inventory synchronization efficiency by 45% utilizing optimized database queries and robust API design."
+                                "Optimized database queries and API design to streamline inventory stock synchronization across 200+ branches."
                             ]
                         }
                     },
@@ -802,30 +801,32 @@
                             id: [
                                 "Membangun 5+ aplikasi untuk Kementerian (Kemendikbud, Kemenkumham, KKP)",
                                 "SIMAE Dishub Bogor: Mengintegrasikan API gateway dengan keamanan tinggi menggunakan sertifikat digital BSRE (Badan Siber dan Sandi Negara).",
-                                "SIMBA Ditjenpas: Mengoptimalkan indexing PostgreSQL yang meningkatkan akurasi dan kecepatan komputasi laporan aset hingga 40%.",
+                                "SIMBA Ditjenpas: Mengoptimalkan indexing dan query database PostgreSQL untuk mempercepat pembuatan laporan aset.",
                                 "Melakukan vulnerability scanning berkala"
                             ],
                             en: [
                                 "Architected 5+ applications for Government Ministries.",
                                 "SIMAE (Transport Dept): Integrated highly secure API gateways with digital certificate validation via BSRE (National Cyber and Crypto Agency).",
-                                "SIMBA (Justice Ministry): Optimized PostgreSQL indexing and query logic, improving asset reporting speed and accuracy by 40%.",
+                                "SIMBA (Justice Ministry): Optimized PostgreSQL indexing and query logic to accelerate asset report generation.",
                                 "Conducting regular vulnerability scanning."
                             ]
                         }
                     },
                     {
                         role: { id: "Fullstack Consultant (Independent)", en: "Fullstack Consultant (Independent)" },
-                        company: "Multiple Clients (Agrivest, Lichemindo)",
+                        company: "Multiple Clients & Custom Projects",
                         date: { id: "2023", en: "2023" },
                         tasks: {
                             id: [
                                 "Agrivest: Membangun sistem CRM berkinerja tinggi menggunakan GoFiber dan Next.js",
-                                "Lichemindo: Mengembangkan platform manajemen dokumen lab terenkripsi yang memangkas beban administrasi penerbitan sertifikat hingga 30%.",
+                                "Lichemindo: Mengembangkan platform manajemen dokumen lab terenkripsi untuk mempermudah administrasi penerbitan sertifikat.",
+                                "WhatsApp Broadcast: Mengembangkan aplikasi pengiriman massal mandiri menggunakan Express.js dengan sistem rotasi pengirim (round-robin) dan delay dinamis untuk pencegahan blokir (anti-ban).",
                                 "Menerapkan arsitektur Cloud Object Storage yang aman dengan strict bucket policies untuk melindungi dokumen konfidensial milik klien."
                             ],
                             en: [
                                 "Agrivest: Developed a high-performance CRM using GoFiber and Next.js",
-                                "Lichemindo: Engineered an encrypted laboratory document platform, reducing certificate publishing administrative overhead by 30%.",
+                                "Lichemindo: Engineered an encrypted laboratory document platform to streamline certificate publishing administration.",
+                                "WhatsApp Broadcast: Developed an independent bulk messaging tool built on Express.js with a sender rotation system (round-robin) and dynamic delays for anti-ban protection.",
                                 "Implemented secure Cloud Object Storage architectures with strict bucket policies to safeguard confidential client documents."
                             ]
                         }
@@ -840,9 +841,8 @@
                     { id: { id: "Dokumentasi Manual QA", en: "QA Manual Documentation" }, tech: "Test Plan, Test Cases, Bug Reports", links: [{ textKey: "docs_text", url: "https://drive.google.com/drive/folders/1P0CTdaqzJZU1A3AI0-wtqkZ3PMHKFNbJ?usp=sharing" }] }
                 ],
                 FullStack: [
-                    { id: { id: "Haus! Inventory Management System", en: "Haus! Inventory Management System" }, tech: "NestJS, Flutter, MySQL, REST API", links: [{ textKey: "internal_text", url: "#" }] },
-                    { id: { id: "LMS Otello (WhatsApp Service)", en: "Otello LMS (WhatsApp Service)" }, tech: "Next.js, NestJS, Flutter, WhatsApp API", links: [{ textKey: "live_text", url: "http://103.150.196.53:3009/" }] },
                     { id: { id: "Sistem Ujian Skripsi F.PSi UI", en: "Psychology UI Thesis Exam System" }, tech: "Laravel, Vue.js, MySQL", links: [{ textKey: "live_text", url: "https://ujian.portal-psikoui.com/login" }] },
+                    { id: { id: "Layanan Broadcast WhatsApp (Anti-Ban)", en: "WhatsApp Broadcast Service (Anti-Ban)" }, tech: "Node.js, Express.js, Round-Robin Rotation, Delay Queue", links: [{ textKey: "live_text", url: "https://waexpress.markit.id/login" }] },
                     { id: { id: "Kontrak Lahan SPPLS", en: "SPPLS Land Lease System" }, tech: "Laravel 10, Sanctum, Casbin RBAC, Vite", links: [{ textKey: "live_text", url: "https://apps.jnc-uw4.com/login" }] }
                 ]
             },
@@ -856,7 +856,7 @@
                     { title: "Frontend Engineering", tags: ["Vue.js/Vuex", "Next.js/React", "Vite", "Tailwind CSS", "Bootstrap"] }
                 ],
                 Common: [
-                    { title: { id: "Metodologi & Tools", en: "Methodologies & Tools" }, tags: ["Agile/Scrum", "CI/CD Pipelines", "Git Workflow", "REST API", "System Architecture", "ClickUp", "Monday.com"] }
+                    { title: { id: "Metodologi & Tools", en: "Methodologies & Tools" }, tags: ["Agile/Scrum", "CI/CD Pipelines", "Setup CI/CD", "Git Workflow", "REST API", "System Architecture", "ClickUp", "Monday.com"] }
                 ]
             }
         };
@@ -866,7 +866,7 @@
          */
         let state = {
             lang: 'id',
-            mode: 'QA'
+            mode: 'FullStack' // Changed default mode to FullStack
         };
 
         const elements = {
@@ -971,6 +971,8 @@
                 const m = mode.toLowerCase();
                 if (m === 'qa') state.mode = 'QA';
                 if (m === 'fullstack' || m === 'fs') state.mode = 'FullStack';
+            } else {
+                state.mode = 'FullStack'; // Force default to FullStack if not specified
             }
         }
 
